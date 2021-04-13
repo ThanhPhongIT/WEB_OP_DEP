@@ -4,5 +4,9 @@
     </div>
     <div class="foot">
         <div class="title">{{title}}</div>
+        <div class="price">
+            <div class="real">{{price | currency: "VND"}}</div>
+            <div class="discount">{{discountPrice | currency: "VND"}} </div>
+        </div>
     </div>
 </div>

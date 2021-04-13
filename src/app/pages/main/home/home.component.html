@@ -5,7 +5,7 @@
             Danh sách thương hiệu điện thoại
         </div>
         <div class="row">
-            <div class="col-6 mb-50" [routerLink]="['/home', a.id]" *ngFor="let a of listBrand ">
+            <div class="col-6 mb-50" [routerLink]="['/home', a.id, {title: a.name}]" *ngFor="let a of listBrand">
                 <app-brand-card [title]="a.name" [img]="a.image_url"></app-brand-card>
             </div>
         </div>

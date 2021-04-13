@@ -9,6 +9,8 @@ import { Component, Input, NgModule, OnInit } from '@angular/core';
 export class BrandCardComponent implements OnInit {
   @Input() title;
   @Input() img;
+  @Input() price;
+  @Input() discountPrice;
   constructor() { }
 
   ngOnInit(): void {

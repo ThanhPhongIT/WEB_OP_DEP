@@ -1,9 +1,9 @@
 <div class="section">
     <div class="container">
-        <div class="title">{{title}}</div>
+        <div class="title">{{title }}</div>
         <div class="row">
-            <div class="col-4" [routerLink]="['/editor']" *ngFor="let a of listBrand">
-                <app-brand-card [title]="a.title" [img]="a.img"></app-brand-card>
+            <div class="col-4 mb-50" [routerLink]="['/editor']" *ngFor="let a of listCategory">
+                <app-brand-card [title]="a.name" [img]="a.img_url" [price]="a.price" [discountPrice]="a.price_discount"></app-brand-card>
             </div>
         </div>
     </div>
