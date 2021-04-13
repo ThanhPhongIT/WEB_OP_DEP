@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="top">
+        <div class="title">Tải app tại đây </div>
+        <div class="search">
+            <i class="fa fa-search"></i>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="logo" [routerLink]="['/home']">
+            <img src="assets/img/header/LOGO.svg" alt="">
+        </div>
+        <div class="menu">
+            <ul>
+                <li [routerLink]="['/home']">Trang chủ</li>
+                <li>Sản phẩm</li>
+                <li>Chính sách</li>
+            </ul>
+
+        </div>
+        <div class="right">
+            <div class="cart-logo" [routerLink]="['/cart']">
+                <i class="fa fa-shopping-cart"></i>
+            </div>
+            <div class="login" (click)="login()">
+                <i class="fa fa-user"></i>
+            </div>
+
+        </div>
+
+    </div>
+</div>

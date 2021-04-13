@@ -1,0 +1,24 @@
+<swiper [slidesPerView]="1" [spaceBetween]="50" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()" [autoplay]="true" [loop]="true">
+    <ng-template swiperSlide>
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <img src="assets/img/banner/slider1.jpg" alt="">
+                <div class="content">
+                    <h3>Công nghệ in nhật bản</h3>
+                    <a href="#">Thiết kế online</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template swiperSlide>
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <img src="assets/img/banner/slider1.jpg" alt="">
+                <div class="content">
+                    <h3>Công nghệ in nhật bản</h3>
+                    <a href="#">Thiết kế online</a>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</swiper>

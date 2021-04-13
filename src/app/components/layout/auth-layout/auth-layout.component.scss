@@ -1,0 +1,18 @@
+.wrapper {
+    overflow: hidden;
+    .auth-layout {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        .auth-layout-banner {
+            width: 50%;
+            height: 100vh;
+            background: linear-gradient(205.57deg, #F8A7B9 4.52%, #FDE3E8 99.39%);
+        }
+        .auth-layout-content {
+            width: 50%;
+            height: 100vh;
+        }
+    }
+}

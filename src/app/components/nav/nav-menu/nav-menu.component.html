@@ -1,0 +1,8 @@
+<div class="nav-menu " *ngFor="let i of dataNavMenu?.list">
+    <div class="nav-menu-icon nav-menu-icon-active">
+        <img [src]="i.icon" alt="">
+    </div>
+    <div class="nav-menu-list">
+        {{i.name}}
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="section">
+    <div class="container">
+        <div class="title">{{title}}</div>
+        <div class="row">
+            <div class="col-4" [routerLink]="['/editor']" *ngFor="let a of listBrand">
+                <app-brand-card [title]="a.title" [img]="a.img"></app-brand-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+swiper {
+    height: 100%;
+    .slider-item {
+        height: 100%;
+    }
+    [nz-row] {
+        height: 100%;
+        [nz-col] {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            .content {
+                position: absolute;
+                right: 100px;
+                h3 {
+                    font-size: 36px;
+                    color: white;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}

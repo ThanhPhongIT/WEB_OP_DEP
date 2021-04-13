@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <input type="text" formControlName="username">
+    <input type="text" formControlName="password">
+    <button [mat-dialog-close]="true">
+              {{btnTitle}}
+    </button>
+    <a (click)="onForgotPW.emit('/link')">
+        Quên mật khẩu
+    </a>
+
+</form>
