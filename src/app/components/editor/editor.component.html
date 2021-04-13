@@ -1,13 +1,23 @@
 <div class="editor">
-    <h2>The portal outlet is below:</h2>
-    <div class="example-portal-outlet">
-        <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-9">
+                <div class="phone_img">
+                    <div class="result">
+                        <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="tool">
+                    <button (click)="selectedPortal = componentPortal">Render component portal</button>
+                    <button (click)="selectedPortal = templatePortal">Render template portal</button>
+                    <button (click)="selectedPortal = domPortal">Render DOM portal</button>
+                </div>
+                <ng-template #templatePortalContent>Hello, this is a template portal</ng-template>
+                <div #domPortalContent cdkDrag>Hello, this is a DOM portal</div>
+            </div>
+        </div>
     </div>
-    <ng-template #templatePortalContent>Hello, this is a template portal</ng-template>
-
-    <button (click)="selectedPortal = componentPortal">Render component portal</button>
-    <button (click)="selectedPortal = templatePortal">Render template portal</button>
-    <button (click)="selectedPortal = domPortal">Render DOM portal</button>
-
-    <div #domPortalContent cdkDrag>Hello, this is a DOM portal</div>
 </div>

@@ -24,7 +24,7 @@ export class ListProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.category_id = this.route.snapshot.params.id;
-    this.title = this.route.snapshot.params.title;
+    this.title = this.route.snapshot.params.t;
     this.getListProductCategory(this.category_id);
   }
 

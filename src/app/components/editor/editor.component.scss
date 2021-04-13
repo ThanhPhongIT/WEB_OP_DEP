@@ -1,10 +1,10 @@
 .editor {
-    min-height: 60vh;
-    .example-portal-outlet {
+    min-height: 70vh;
+    .result {
         margin-bottom: 10px;
         padding: 10px;
         border: 1px dashed black;
-        width: 250px;
-        height: 250px;
+        width: 100%;
+        min-height: 70vh;
     }
 }
