@@ -1,5 +1,10 @@
 .footer {
-    background-color: #000;
-    color: #fff;
+    border-top: #000 solid 1px;
+    color: #000;
     padding: 60px 0;
+    .logo {
+        img {
+            height: 70px;
+        }
+    }
 }

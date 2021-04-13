@@ -29,6 +29,11 @@
             font-size: 22px;
             text-align: center;
             padding: 15px 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all .3s ease-in-out;
+            &:hover {
+                color: #FF324D;
+            }
         }
         .price {
             width: 100%;
@@ -39,6 +44,10 @@
             padding-bottom: 10px;
             .real {
                 text-decoration-line: line-through;
+            }
+            .discount {
+                color: #FF324D;
+                font-weight: 600;
             }
         }
     }
