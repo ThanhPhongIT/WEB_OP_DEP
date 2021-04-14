@@ -1,13 +1,11 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
   Component,
   NgModule,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { EditorMainComponent } from './editor-main/editor-main.component';
 
