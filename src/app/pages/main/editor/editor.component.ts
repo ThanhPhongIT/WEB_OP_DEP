@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { EditorMainComponent } from './editor-main/editor-main.component';
 
 @Component({
   selector: 'app-editor',
@@ -21,10 +22,21 @@ export class EditorComponent implements AfterViewInit {
 }
 
 @NgModule({
-  declarations: [EditorComponent],
+  declarations: [EditorComponent, EditorMainComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: EditorComponent }]),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: EditorComponent,
+        children: [
+          {
+            path: '',
+            component: EditorMainComponent,
+          },
+        ],
+      },
+    ]),
     DragDropModule,
   ],
 })

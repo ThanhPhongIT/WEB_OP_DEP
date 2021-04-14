@@ -13,6 +13,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { LoginComponent } from '../auth/login/login.component';
+import { EditorMainComponent } from './editor/editor-main/editor-main.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from '../auth/login/login.component';
     ProfileComponent,
     DetailProductComponent,
     ListProductComponent,
+    EditorMainComponent,
   ],
   imports: [
     CommonModule,
