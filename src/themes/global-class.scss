@@ -1,0 +1,46 @@
+.btn-fill-out {
+    background-color: transparent;
+    border: 1px solid #FF324D;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-fill-out::before,
+.btn-fill-out::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #FF324D;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    width: 51%;
+}
+
+.btn-fill-out::after {
+    right: 0;
+    left: auto;
+}
+
+.btn-fill-out:hover:before,
+.btn-fill-out:hover:after {
+    width: 0;
+}
+
+.btn-fill-out:hover {
+    color: #FF324D !important;
+}
+
+.heading_s1 h1,
+.heading_s1 h2,
+.heading_s1 h3,
+.heading_s1 h4,
+.heading_s1 h5,
+.heading_s1 h6 {
+    font-weight: 700;
+    margin: 0;
+    text-transform: capitalize;
+}

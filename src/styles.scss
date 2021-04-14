@@ -25,6 +25,7 @@ $web-op-dep-theme: mat-light-theme(( color: ( primary: $web-op-dep-primary, acce
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~swiper/swiper-bundle';
+@import './themes/global-class.scss';
 body {
     font-family: 'Mulish', sans-serif !important;
     margin: 0px;
