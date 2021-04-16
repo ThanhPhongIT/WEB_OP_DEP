@@ -1,5 +1,21 @@
 {
   "projects": {
     "default": "opdienthoaidep-9acfe"
+  },
+  "targets": {
+    "opdienthoaidep-9acfe": {
+      "hosting": {
+        "web-op-dep": [
+          "opdienthoaidep-9acfe"
+        ]
+      }
+    },
+    "opdep-5eb9f": {
+      "hosting": {
+        "web-op-dep": [
+          "opdep-5eb9f"
+        ]
+      }
+    }
   }
 }
