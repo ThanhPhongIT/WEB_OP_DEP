@@ -21,7 +21,7 @@ firebase.initializeApp(environment.firebase);
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule,
   ],
   providers: [
     WindowService,

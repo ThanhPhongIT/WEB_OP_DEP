@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
   }
 
   sendLoginCode() {
-    if(this.form.value.phoneNumber=''){
+    // if(this.form.value.phoneNumber=''){
       
-    }
+    // }
     let phone = '+84' + this.form.value.phoneNumber;
     const appVerifier = this.windowRef.recaptchaVerifier;
     firebase
