@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { EditorComponent } from 'src/app/components/editor/editor.component';
+import { EditorComponent } from 'src/app/pages/main/editor/editor.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { HomeComponent } from './home/home.component';
@@ -22,19 +22,20 @@ export const mainRoutes: Routes = [
       },
       {
         path: 'editor',
-        component: EditorComponent
+        loadChildren: () =>
+          import('./editor/editor.component').then((m) => m.EditorModule),
       },
       {
         path: 'home/:id',
-        component: ListProductComponent
+        component: ListProductComponent,
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
       },
       {
         path: 'cart',
-        component: CartComponent
+        component: CartComponent,
       },
       {
         path: '',
