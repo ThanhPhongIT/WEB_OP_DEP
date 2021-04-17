@@ -23,6 +23,10 @@ firebase.initializeApp(environment.firebase);
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularFireModule,
   ],
   providers: [
     {
@@ -30,10 +34,6 @@ firebase.initializeApp(environment.firebase);
       useClass: APIInterceptor,
       multi: true,
     },
-    BrowserModule, 
-    BrowserAnimationsModule,
-    HttpClientModule,
-    AngularFireModule,
     WindowService,
     LoginService,
   ],
