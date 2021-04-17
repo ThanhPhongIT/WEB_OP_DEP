@@ -13,7 +13,6 @@ import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { EditorToolbarComponent } from './editor/editor-toolbar/editor-toolbar.component';
-
 @NgModule({
   declarations: [
     MainComponent,

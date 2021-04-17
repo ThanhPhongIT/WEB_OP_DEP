@@ -4,6 +4,9 @@ import { WindowService } from 'src/app/services/window.service';
 import firebase from 'firebase';
 import { FormControl, FormGroup } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { LocalStorageService } from 'src/app/services/localstorage.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +19,13 @@ export class LoginComponent implements OnInit {
       phone: 'phone',
     },
   };
-  constructor(private win: WindowService, private loginService: LoginService) {}
+  constructor(
+    private win: WindowService,
+    private loginService: LoginService,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    private localStorage: LocalStorageService,
+    // private toastService: ToastService
+  ) {}
   windowRef: any;
   form = new FormGroup({
     phoneNumber: new FormControl(''),
@@ -37,19 +46,21 @@ export class LoginComponent implements OnInit {
   }
 
   sendLoginCode() {
-    // if(this.form.value.phoneNumber=''){
-      
+    // if (this.form.value.phoneNumber) {
+    //   this.toastService.showError('Bạn chưa nhập số điện thoại', "Lỗi");
+    // } else {
+      let phone = '+84' + this.form.value.phoneNumber;
+      const appVerifier = this.windowRef.recaptchaVerifier;
+      firebase
+        .auth()
+        .signInWithPhoneNumber(phone, appVerifier)
+        .then((result) => {
+          console.log(result);
+          this.windowRef.confirmationResult = result;
+          this.isSend = false;
+        })
+        .catch((error) => console.log(error));
     // }
-    let phone = '+84' + this.form.value.phoneNumber;
-    const appVerifier = this.windowRef.recaptchaVerifier;
-    firebase
-      .auth()
-      .signInWithPhoneNumber(phone, appVerifier)
-      .then((result) => {
-        console.log(result);
-        this.windowRef.confirmationResult = result;
-      })
-      .catch((error) => console.log(error));
   }
 
   verifyLoginCode() {
@@ -58,9 +69,16 @@ export class LoginComponent implements OnInit {
       .then((result) => {
         this.user = result.user;
         console.log(this.user.za);
-        this.loginService.create({"token_firebase": this.user.za, "type": 2}).subscribe(res=> console.log(res));
-        
+        this.loginService
+          .create({ token_firebase: this.user.za, type: 2 })
+          .subscribe((res: any) => {
+            this.localStorage.set('token', res);
+            this.dialogRef.close();
+          });
       })
       .catch((error) => console.log(error, 'Incorrect code entered?'));
+  }
+  closeDialog() {
+    this.dialogRef.close();
   }
 }

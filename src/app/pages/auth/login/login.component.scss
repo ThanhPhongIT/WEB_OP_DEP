@@ -1,3 +1,13 @@
+#recaptcha-container {
+    margin-bottom: 15px;
+}
+
+::ng-deep {
+    .ng-star-inserted {
+        width: 100% !important;
+    }
+}
+
 .login_wrap {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
@@ -7,6 +17,7 @@
 }
 
 .login_register_wrap {
+    width: 100% !important;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -ms-flex-align: center;
