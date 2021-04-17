@@ -1,6 +1,6 @@
 <div class="container">
     <div class="top">
-        <div class="title">Tải app tại đây </div>
+        <a href="https://play.google.com/store/apps/details?id=com.inopdienthoaidep.opviet" class="title">Tải app tại đây </a>
         <div class="search">
             <i class="fa fa-search"></i>
         </div>
@@ -18,7 +18,7 @@
 
         </div>
         <div class="right">
-            <div class="cart-logo" [routerLink]="['/cart']">
+            <div class="cart-logo" (click)="goToCart()">
                 <i class="fa fa-shopping-cart"></i>
             </div>
             <div class="login" (click)="login()">

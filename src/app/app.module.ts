@@ -6,6 +6,15 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { appRoutes } from './app.routes';
 import { APIInterceptor } from './utils/interceptor/api.interceptor';
+import { WindowService } from './services/window.service';
+import { environment } from 'src/environments/environment';
+import firebase from 'firebase';
+import { LoginService } from './services/login.service';
+import { AngularFireModule } from '@angular/fire';
+import { ToastrService } from 'ngx-toastr';
+import { ToastService } from './services/toast.service';
+
+firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +30,13 @@ import { APIInterceptor } from './utils/interceptor/api.interceptor';
       useClass: APIInterceptor,
       multi: true,
     },
+    BrowserModule, 
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AngularFireModule,
+    WindowService,
+    LoginService,
   ],
   bootstrap: [AppComponent],
 })

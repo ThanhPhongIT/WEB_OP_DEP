@@ -5,7 +5,7 @@ import { BaseApiService } from "./base-api.service";
 @Injectable()
 export class LoginService extends BaseApiService<any>{
 	constructor(protected http: HttpClient){
-		super(http, 'url');
+		super(http, 'api/login-phone-number');
 	}
 	
 }

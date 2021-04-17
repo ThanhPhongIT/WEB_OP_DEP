@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/localstorage.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localStorage: LocalStorageService,
+    private router: Router) { }
 
   ngOnInit(): void {
+  }
+  logout(){
+    this.localStorage.clear();
+    this.router.navigate(["/home"]);
   }
 
 }

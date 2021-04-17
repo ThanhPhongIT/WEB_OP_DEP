@@ -12,7 +12,6 @@ import { ListProductComponent } from './list-product/list-product.component';
 import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
-
 @NgModule({
   declarations: [
     MainComponent,

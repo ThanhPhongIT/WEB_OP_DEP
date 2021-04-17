@@ -7,7 +7,7 @@ import { map, take } from 'rxjs/operators';
 })
 export class LocalStorageService {
   get(key) {
-    return JSON.parse(localStorage.getItem(key));
+    return localStorage.getItem(key);
   }
 
   set(key, val) {
