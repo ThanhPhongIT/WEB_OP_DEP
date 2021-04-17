@@ -17,6 +17,9 @@ export class EditorStateService {
   private drawImageSubject = new BehaviorSubject(null);
   readonly drawImage$ = this.drawImageSubject.asObservable();
 
+  private historyPositionSubject = new ReplaySubject();
+  readonly historyPosition$ = this.historyPositionSubject.asObservable();
+
   setListSelectedImage(image: string[]): void {
     this.listSelectedImageSubject.next(image);
   }
@@ -31,5 +34,9 @@ export class EditorStateService {
 
   setDrawImage(image: string) {
     this.drawImageSubject.next(image);
+  }
+
+  setHistoryPosition(pos: { x: string; y: string }) {
+    this.historyPositionSubject.next(pos);
   }
 }
