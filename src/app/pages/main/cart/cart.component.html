@@ -1,1 +1,10 @@
-<p>cart works!</p>
+<div class="wrapper">
+    <div *ngIf="listCart">
+        <div class="row" *ngFor="let item of listCart">
+            <div class="col-4"><img [src]="item.photo_url_preview" alt=""></div>
+        </div>
+    </div>
+    <div *ngIf="listCart.length === 0">
+        <p>Không có sản phẩm nào trong giỏ hàng!!!</p>
+    </div>
+</div>

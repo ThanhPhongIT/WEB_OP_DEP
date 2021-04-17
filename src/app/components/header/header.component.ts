@@ -19,8 +19,6 @@ export class HeaderComponent implements OnInit {
   }
 
   login(){
-    console.log(this.localStorageService.get("token"));
-    
     if(this.localStorageService.get("token")){
       this.route.navigate(["/profile"])
     }else{

@@ -31,7 +31,6 @@ firebase.initializeApp(environment.firebase);
       multi: true,
     },
     BrowserModule, 
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule,

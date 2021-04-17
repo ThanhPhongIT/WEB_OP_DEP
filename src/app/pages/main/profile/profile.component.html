@@ -1,2 +1,23 @@
-<p>profile works!</p>
-<button (click)="logout()">Đăng xuất</button>
+<div class="container">
+    <p class="title">Thông tin giao hàng</p>
+    <form class="infor" *ngIf="infor">
+        <div class="row mb-5">
+            <div class="col-6 left">Tên</div>
+            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số điện thoại</div>
+            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số nhà, đường phố</div>
+            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Tỉnh</div>
+            <input type="text" class="col-6 right" />
+        </div>
+    </form>
+    <button class="logout btn btn-fill-out btn-block">Lưu thông tin</button>
+    <button class="logout btn btn-fill-out btn-block" (click)="logout()">Đăng xuất</button>
+</div>

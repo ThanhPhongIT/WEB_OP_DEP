@@ -11,11 +11,13 @@ import { PhoneModelService } from 'src/app/services/phone-model.service';
 export class HomeComponent implements OnInit {
   listProduct = [1, 2, 3, 4, 5];
   listBrand: PhoneModel[];
-  constructor(private phoneModelService: PhoneModelService, private router: Router) {}
+  constructor(
+    private phoneModelService: PhoneModelService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getListPhoneModel();
-    
   }
 
   getListPhoneModel() {

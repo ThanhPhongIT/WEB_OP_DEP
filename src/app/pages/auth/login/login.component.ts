@@ -68,13 +68,8 @@ export class LoginComponent implements OnInit {
       .confirm(this.formotp.value.otp)
       .then((result) => {
         this.user = result.user;
-        console.log(this.user.za);
-        this.loginService
-          .create({ token_firebase: this.user.za, type: 2 })
-          .subscribe((res: any) => {
-            this.localStorage.set('token', res);
-            this.dialogRef.close();
-          });
+        this.localStorage.set('token', result.user.za);
+        this.dialogRef.close();
       })
       .catch((error) => console.log(error, 'Incorrect code entered?'));
   }
