@@ -4,10 +4,16 @@ import {
   AfterViewInit,
   Component,
   NgModule,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { EditorMainComponent } from './editor-main/editor-main.component';
+import { DraggableImageModule } from 'src/app/components/editor/draggable-image/draggable-image.component';
+import { EditorToolbarModule } from 'src/app/components/editor/editor-toolbar/editor-toolbar.component';
+import {
+  EditorMainComponent,
+  EditorMainModule,
+} from '../../../components/editor/editor-main/editor-main.component';
+import { EditorWrapperComponent } from './editor-wrapper/editor-wrapper.component';
 
 @Component({
   selector: 'app-editor',
@@ -20,9 +26,12 @@ export class EditorComponent implements AfterViewInit {
 }
 
 @NgModule({
-  declarations: [EditorComponent, EditorMainComponent],
+  declarations: [EditorComponent, EditorWrapperComponent],
   imports: [
     CommonModule,
+    DraggableImageModule,
+    EditorMainModule,
+    EditorToolbarModule,
     RouterModule.forChild([
       {
         path: '',
@@ -30,7 +39,7 @@ export class EditorComponent implements AfterViewInit {
         children: [
           {
             path: '',
-            component: EditorMainComponent,
+            component: EditorWrapperComponent,
           },
         ],
       },

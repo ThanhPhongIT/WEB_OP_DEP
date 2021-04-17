@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, NgModule, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-editor-toolbar',
@@ -17,3 +18,10 @@ export class EditorToolbarComponent implements OnInit {
     }
   }
 }
+
+@NgModule({
+  declarations: [EditorToolbarComponent],
+  imports: [CommonModule],
+  exports: [EditorToolbarComponent],
+})
+export class EditorToolbarModule {}
