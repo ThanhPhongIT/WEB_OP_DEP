@@ -7,5 +7,6 @@ export class LoginService extends BaseApiService<any>{
 	constructor(protected http: HttpClient){
 		super(http, 'api/login-phone-number');
 	}
+
 	
 }

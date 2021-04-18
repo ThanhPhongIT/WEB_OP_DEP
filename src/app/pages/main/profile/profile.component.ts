@@ -12,6 +12,7 @@ import { LoginService } from 'src/app/services/login.service';
 export class ProfileComponent implements OnInit {
   name;
   infor: any;
+  isEdit = false;
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
@@ -22,16 +23,26 @@ export class ProfileComponent implements OnInit {
     this.getInfor();
   }
 
+  edit(){
+    this.isEdit = true;
+  }
+
+  confirm(){
+    this.isEdit = false;
+  }
+
   getInfor() {
+    const phone = this.localStorageService.get('phone');
     console.log(this.localStorageService.get('token'));
     this.loginService
       .create({
         token_firebase: this.localStorageService.get('token'),
         type: 2,
+        phone_number_firebase: phone
       })
       .subscribe((res: any) => {
         this.infor = res.data;
-        console.log(res);
+        console.log(res.data);
       });
   }
   logout() {

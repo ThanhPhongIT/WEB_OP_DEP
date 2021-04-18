@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
     //   this.toastService.showError('Bạn chưa nhập số điện thoại', "Lỗi");
     // } else {
       let phone = '+84' + this.form.value.phoneNumber;
+      this.localStorage.set('phone', phone);
       const appVerifier = this.windowRef.recaptchaVerifier;
       firebase
         .auth()

@@ -1,7 +1,42 @@
-<div class="wrapper">
-    <div *ngIf="listCart">
-        <div class="row" *ngFor="let item of listCart">
-            <div class="col-4"><img [src]="item.photo_url_preview" alt=""></div>
+<div class="wrapper container">
+    <div *ngIf="listCart.length != 0">
+        <span class="title">Giỏ hàng của bạn</span><span> (Có <span style="font-weight: 700;">{{listCart.length}}</span> sản phẩm trong giỏ hàng)</span>
+        <div class="row d-flex align-items-start justify-content-between">
+            <div class="col-8">
+                <div class="row item d-flex align-items-center justify-content-between" *ngFor="let item of listCart">
+                    <div class="col-2">
+                        <img [src]="item.photo_url_preview" alt="">
+                    </div>
+                    <div class="col-5 delete d-flex align-items-start justify-content-center flex-column">
+                        <p>{{item.name}}</p>
+                        <div class="delete d-flex align-items-center justify-content-center">
+                            <img src="assets/img/delete.svg" alt="">
+                            <p class="text m-0 ml-1">Xóa</p>
+                        </div>
+                    </div>
+                    <div class="col-2">{{item.quantity}}</div>
+                    <div class="col-2">{{item.price}}</div>
+
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="infor-cart">
+                    <div class="titles">Tóm tắt đơn hàng</div>
+                    <div class="itemi">
+                        <div class="left">Số lượng</div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="itemi">
+                        <div class="left">Shipping</div>
+                        <div class="right"></div>
+                    </div>
+                    <div class="itemi">
+                        <div class="left">Tổng tiền</div>
+                        <div class="right"></div>
+                    </div>
+                    <button class="btn btn-fill-out btn-block mt-5">Tiến hành đặt hàng</button>
+                </div>
+            </div>
         </div>
     </div>
     <div *ngIf="listCart.length === 0">

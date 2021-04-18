@@ -1,3 +1,32 @@
 .wrapper {
     min-height: 60vh;
+    padding: 60px 0;
+    .title {
+        font-size: 25px;
+        font-weight: 600;
+        padding: 100px 0;
+        text-transform: uppercase;
+    }
+    .item {
+        padding: 30px 0;
+        border-bottom: 1px solid #ccc;
+        .delete {
+            cursor: pointer;
+        }
+    }
+    .infor-cart {
+        background-color: #f2f2f2;
+        padding: 32px;
+        .titles {
+            font-size: 23px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .itemi {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 32px;
+        }
+    }
 }

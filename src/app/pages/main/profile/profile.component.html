@@ -1,23 +1,42 @@
 <div class="container">
     <p class="title">Thông tin giao hàng</p>
-    <form class="infor" *ngIf="infor">
+    <div class="infor" *ngIf="!isEdit">
+        <div class="edit" (click)="edit()">Sửa</div>
         <div class="row mb-5">
             <div class="col-6 left">Tên</div>
-            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+            <div class="content">{{infor.full_name}}</div>
         </div>
         <div class="row mb-5">
             <div class="col-6 left">Số điện thoại</div>
-            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+            <div class="content">{{infor.phone_number}}</div>
         </div>
         <div class="row mb-5">
             <div class="col-6 left">Số nhà, đường phố</div>
-            <input type="text" class="col-6 right" [(ngModel)]="infor.full_name" />
+            <div class="content">{{infor.address}}</div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Tỉnh</div>
+            <div class="content"></div>
+        </div>
+        <button class="logout btn btn-fill-out btn-block" (click)="logout()">Đăng xuất</button>
+    </div>
+    <form class="infor" *ngIf="infor && isEdit">
+        <div class="row mb-5">
+            <div class="col-6 left">Tên</div>
+            <input type="text" class="col-6 right" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số điện thoại</div>
+            <input type="text" class="col-6 right" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số nhà, đường phố</div>
+            <input type="text" class="col-6 right" />
         </div>
         <div class="row mb-5">
             <div class="col-6 left">Tỉnh</div>
             <input type="text" class="col-6 right" />
         </div>
+        <button class="logout btn btn-fill-out btn-block" (click)="confirm()">Lưu thông tin</button>
     </form>
-    <button class="logout btn btn-fill-out btn-block">Lưu thông tin</button>
-    <button class="logout btn btn-fill-out btn-block" (click)="logout()">Đăng xuất</button>
 </div>

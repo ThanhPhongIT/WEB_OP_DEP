@@ -19,19 +19,22 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.localStorageService.get('token'));
-    this.loginService
-      .create({
-        token_firebase: this.localStorageService.get('token'),
-        type: 2,
-      })
-      .subscribe((res: any) => {
-        console.log(res);
-        this.infor = res.data
-      });
-      this.getCartInfor(this.infor.user_id);
+    this.getInfor();
   }
-
+  async getInfor(){
+    const phone = this.localStorageService.get('phone');
+    await this.loginService
+    .create({
+      token_firebase: this.localStorageService.get('token'),
+      type: 2,
+      phone_number_firebase: phone
+    })
+    .subscribe((res: any) => {
+      this.infor = res.data;
+      // this.getCartInfor(this.infor.id);
+      this.getCartInfor(6);
+    });
+  }
   getCartInfor(userId) {
     this.cartService.create({ user_id: userId }).subscribe((res: any) => {
       this.listCart = res.data;
