@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="col-2">{{item.quantity}}</div>
-                    <div class="col-2">{{item.price}}</div>
+                    <div class="col-2">{{item.price | currency: "VND"}}</div>
 
                 </div>
             </div>
@@ -24,15 +24,15 @@
                     <div class="titles">Tóm tắt đơn hàng</div>
                     <div class="itemi">
                         <div class="left">Số lượng</div>
-                        <div class="right"></div>
+                        <div class="right">{{listCart.length}}</div>
                     </div>
                     <div class="itemi">
                         <div class="left">Shipping</div>
-                        <div class="right"></div>
+                        <div class="right">{{ship | currency: "VND"}}</div>
                     </div>
                     <div class="itemi">
                         <div class="left">Tổng tiền</div>
-                        <div class="right"></div>
+                        <div class="right">{{total | currency: "VND"}}</div>
                     </div>
                     <button class="btn btn-fill-out btn-block mt-5">Tiến hành đặt hàng</button>
                 </div>

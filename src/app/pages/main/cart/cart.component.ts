@@ -11,6 +11,8 @@ import { LoginService } from 'src/app/services/login.service';
 export class CartComponent implements OnInit {
   listCart = [];
   infor: any;
+  ship = 12000;
+  total = 12000;
 
   constructor(
     private cartService: CartService,
@@ -20,6 +22,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getInfor();
+    
   }
   async getInfor(){
     const phone = this.localStorageService.get('phone');
@@ -38,6 +41,9 @@ export class CartComponent implements OnInit {
   getCartInfor(userId) {
     this.cartService.create({ user_id: userId }).subscribe((res: any) => {
       this.listCart = res.data;
+      this.listCart.forEach(item =>{
+        this.total += Number(item.price);
+      })
       console.log(this.listCart);
     });
   }
