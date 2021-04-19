@@ -9,7 +9,7 @@
                     <h3>Chào mừng bạn đến với ốp đẹp!!!</h3>
                 </div>
                 <h4>Nhập số điện thoại để xác thực</h4>
-                <form [formGroup]="form" (ngSubmit)="sendLoginCode()">
+                <form [formGroup]="form" (ngSubmit)="sendLoginCode()" autocomplete="off">
                     <div class="form-group">
                         <input class="form-control" required="" type="number" formControlName="phoneNumber" name="phoneNumber" placeholder="Số điện thoại">
                     </div>
@@ -20,7 +20,7 @@
                 </form>
                 <div class="nhapma" *ngIf="this.windowRef.confirmationResult">
                     <h4>Nhập mã otp để xác thực</h4>
-                    <form [formGroup]="formotp" (ngSubmit)="verifyLoginCode()">
+                    <form [formGroup]="formotp" (ngSubmit)="verifyLoginCode()" autocomplete="off">
                         <div class="form-group">
                             <input class="form-control" required="" type="text" formControlName="otp" name="otp" placeholder="Nhập mã otp">
                         </div>

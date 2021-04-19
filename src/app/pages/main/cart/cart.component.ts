@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -17,10 +18,12 @@ export class CartComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private loginService: LoginService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private loadService: LoaderService
   ) {}
 
   ngOnInit(): void {
+    this.loadService.show();
     this.getInfor();
     
   }
@@ -36,6 +39,7 @@ export class CartComponent implements OnInit {
       this.infor = res.data;
       // this.getCartInfor(this.infor.id);
       this.getCartInfor(6);
+      
     });
   }
   getCartInfor(userId) {
@@ -45,6 +49,7 @@ export class CartComponent implements OnInit {
         this.total += Number(item.price);
       })
       console.log(this.listCart);
+      this.loadService.hide();
     });
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
+import { LoaderService } from 'src/app/services/loader.service';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -16,10 +17,12 @@ export class ProfileComponent implements OnInit {
   constructor(
     private localStorageService: LocalStorageService,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private loadService : LoaderService
   ) {}
 
   ngOnInit(): void {
+    this.loadService.show();
     this.getInfor();
   }
 
@@ -43,6 +46,12 @@ export class ProfileComponent implements OnInit {
       .subscribe((res: any) => {
         this.infor = res.data;
         console.log(res.data);
+      },
+      ()=>{
+        
+      },
+      ()=>{
+        this.loadService.hide();
       });
   }
   logout() {

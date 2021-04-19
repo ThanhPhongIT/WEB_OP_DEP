@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterState } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { LoaderService } from 'src/app/services/loader.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductCategoryModel } from '../../../models/product-category.model';
 
@@ -17,12 +18,14 @@ export class ListProductComponent implements OnInit {
 
   constructor(
     private productCategoryService: ProductCategoryService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loaderService: LoaderService
   ) {
     
   }
 
   ngOnInit(): void {
+    this.loaderService.show();
     this.category_id = this.route.snapshot.params.id;
     this.title = this.route.snapshot.params.t;
     this.getListProductCategory(this.category_id);
@@ -33,6 +36,7 @@ export class ListProductComponent implements OnInit {
       .getListProductCategory(id)
       .subscribe((res: any) => {
         this.listCategory = res;
+        this.loaderService.hide();
       });
   }
 }

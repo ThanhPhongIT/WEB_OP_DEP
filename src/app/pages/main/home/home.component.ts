@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhoneModel } from 'src/app/models/phone-model.model';
+import { LoaderService } from 'src/app/services/loader.service';
 import { PhoneModelService } from 'src/app/services/phone-model.service';
 
 @Component({
@@ -13,16 +14,19 @@ export class HomeComponent implements OnInit {
   listBrand: PhoneModel[];
   constructor(
     private phoneModelService: PhoneModelService,
-    private router: Router
+    private router: Router,
+    private loaderService: LoaderService 
   ) {}
 
   ngOnInit(): void {
     this.getListPhoneModel();
+    this.loaderService.show();
   }
 
   getListPhoneModel() {
     this.phoneModelService.getListPhoneModel().subscribe((res: any) => {
       this.listBrand = res;
+      this.loaderService.hide();
     });
   }
 }

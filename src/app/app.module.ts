@@ -11,8 +11,7 @@ import { environment } from 'src/environments/environment';
 import firebase from 'firebase';
 import { LoginService } from './services/login.service';
 import { AngularFireModule } from '@angular/fire';
-import { ToastrService } from 'ngx-toastr';
-import { ToastService } from './services/toast.service';
+import { LoaderModule } from './components/loader/loader.component';
 
 firebase.initializeApp(environment.firebase);
 
@@ -27,6 +26,7 @@ firebase.initializeApp(environment.firebase);
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule,
+    LoaderModule
   ],
   providers: [
     {
