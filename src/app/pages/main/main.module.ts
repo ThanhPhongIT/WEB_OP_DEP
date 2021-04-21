@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { BannerModule } from 'src/app/components/banner/banner.component';
 import { BrandCardModule } from 'src/app/components/card/brand-card/brand-card.component';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
-import { ProductModule } from 'src/app/components/product/product.component';
 import { CartComponent } from './cart/cart.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { HomeComponent } from './home/home.component';
@@ -33,7 +32,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LayoutModule,
     BannerModule,
     EditorWrapperComponentModule,
-    ProductModule,
     BrandCardModule,
     RegexPhonePipeModule, FormsModule, ReactiveFormsModule
   ],
