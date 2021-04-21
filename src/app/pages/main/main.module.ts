@@ -13,6 +13,7 @@ import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentComponent } from './payment/payment.component';
+import { RegexPhonePipe, RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
 @NgModule({
   declarations: [
     MainComponent,
@@ -30,7 +31,9 @@ import { PaymentComponent } from './payment/payment.component';
     BannerModule,
     ProductModule,
     BrandCardModule,
+    RegexPhonePipeModule
   ],
-  providers: [],
+  providers: [
+  ],
 })
 export class MainModule {}
