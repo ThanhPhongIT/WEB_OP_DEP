@@ -15,7 +15,7 @@ export abstract class BaseApiService<T> {
 
     return this.http
       .get(`${this.actionUrl}`, this.httpOptions)
-      .pipe(map((res: any) => res.Payload));
+      .pipe(map((res: any) => res.data));
   }
 
   get(id: any, params?): Observable<HttpEvent<T>> {
@@ -24,7 +24,7 @@ export abstract class BaseApiService<T> {
     };
     return this.http
       .get<T>(`${this.actionUrl}/${id}`, this.httpOptions)
-      .pipe(map((res: any) => res.Payload));
+      .pipe(map((res: any) => res.data));
   }
 
   create(data: Partial<T>, params?, headers?): Observable<HttpEvent<T>> {

@@ -16,6 +16,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditorWrapperComponentModule } from './editor/editor-wrapper/editor-wrapper.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     MainComponent,
@@ -34,7 +35,7 @@ import { EditorWrapperComponentModule } from './editor/editor-wrapper/editor-wra
     EditorWrapperComponentModule,
     ProductModule,
     BrandCardModule,
-    RegexPhonePipeModule
+    RegexPhonePipeModule, FormsModule, ReactiveFormsModule
   ],
   providers: [
     MatDialogModule,

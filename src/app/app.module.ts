@@ -12,6 +12,8 @@ import firebase from 'firebase';
 import { LoginService } from './services/login.service';
 import { AngularFireModule } from '@angular/fire';
 import { LoaderModule } from './components/loader/loader.component';
+import { ToastService } from './services/toast.service';
+import { ScullyLibModule } from '@scullyio/ng-lib';
 
 firebase.initializeApp(environment.firebase);
 
@@ -26,7 +28,8 @@ firebase.initializeApp(environment.firebase);
     BrowserAnimationsModule,
     HttpClientModule,
     AngularFireModule,
-    LoaderModule
+    LoaderModule,
+    ScullyLibModule
   ],
   providers: [
     {
