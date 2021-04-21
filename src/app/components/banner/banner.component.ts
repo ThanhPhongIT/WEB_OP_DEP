@@ -4,29 +4,28 @@ import { SwiperModule } from 'swiper/angular';
 
 @Component({
   selector: 'app-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  template: `<div class="banner" [style.backgroundColor]="'#ecf4ff'">
+              <div class="container">
+                <img src="assets/img/banner/slider1.jpg" alt="" />
+              </div>
+            </div>`,
 })
 export class BannerComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-  
   onSwiper(swiper) {
     console.log(swiper);
   }
   onSlideChange() {
     console.log('slide change');
   }
-
 }
 
 @NgModule({
   declarations: [BannerComponent],
-  imports: [CommonModule,SwiperModule],
-  exports: [BannerComponent]
+  imports: [CommonModule, SwiperModule],
+  exports: [BannerComponent],
 })
-
 export class BannerModule {}
