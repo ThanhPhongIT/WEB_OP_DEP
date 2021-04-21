@@ -15,7 +15,7 @@ export class LoaderComponent implements OnInit {
     value = 50;
     isLoading: Subject<boolean>;
     constructor(
-        public loadingService: LoaderService
+        public loadingService: LoaderService  
     ) {
         this.isLoading = loadingService.isLoading;
     }
