@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
+import { Profile } from 'src/app/models/profile.model';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -12,7 +13,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class ProfileComponent implements OnInit {
   name;
-  infor: any;
+  infor: Profile;
   isEdit = false;
   constructor(
     private localStorageService: LocalStorageService,
