@@ -13,7 +13,9 @@ import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentComponent } from './payment/payment.component';
-import { RegexPhonePipe, RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
+import { RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditorWrapperComponentModule } from './editor/editor-wrapper/editor-wrapper.component';
 @NgModule({
   declarations: [
     MainComponent,
@@ -29,11 +31,13 @@ import { RegexPhonePipe, RegexPhonePipeModule } from 'src/app/utils/pipes/regexP
     RouterModule.forChild(mainRoutes),
     LayoutModule,
     BannerModule,
+    EditorWrapperComponentModule,
     ProductModule,
     BrandCardModule,
     RegexPhonePipeModule
   ],
   providers: [
+    MatDialogModule,
   ],
 })
 export class MainModule {}

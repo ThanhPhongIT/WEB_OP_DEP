@@ -1,19 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'regexPhone'})
+@Pipe({ name: 'regexPhone' })
 export class RegexPhonePipe implements PipeTransform {
-  transform(value: string, ): string {
-	const re = /"/gi;
-    return value.replace(re , '');
+  transform(value: string): string {
+    const re = /"/gi;
+    return value.replace(re, '');
   }
 }
 
-
 @NgModule({
-	declarations: [RegexPhonePipe],
-	imports: [CommonModule],
-	exports: [RegexPhonePipe]
+  declarations: [RegexPhonePipe],
+  imports: [CommonModule],
+  exports: [RegexPhonePipe],
 })
-
-export class RegexPhonePipeModule{}
+export class RegexPhonePipeModule {}
