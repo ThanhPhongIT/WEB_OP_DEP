@@ -13,6 +13,8 @@ import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentComponent } from './payment/payment.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EditorWrapperComponentModule } from './editor/editor-wrapper/editor-wrapper.component';
 @NgModule({
   declarations: [
     MainComponent,
@@ -28,8 +30,10 @@ import { PaymentComponent } from './payment/payment.component';
     RouterModule.forChild(mainRoutes),
     LayoutModule,
     BannerModule,
+    EditorWrapperComponentModule,
     ProductModule,
     BrandCardModule,
+    MatDialogModule,
   ],
   providers: [],
 })

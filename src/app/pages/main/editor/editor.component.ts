@@ -10,7 +10,10 @@ import { RouterModule } from '@angular/router';
 import { DraggableImageModule } from 'src/app/components/editor/draggable-image/draggable-image.component';
 import { EditorToolbarModule } from 'src/app/components/editor/editor-toolbar/editor-toolbar.component';
 import { EditorMainModule } from '../../../components/editor/editor-main/editor-main.component';
-import { EditorWrapperComponent } from './editor-wrapper/editor-wrapper.component';
+import {
+  EditorWrapperComponent,
+  EditorWrapperComponentModule,
+} from './editor-wrapper/editor-wrapper.component';
 
 @Component({
   selector: 'app-editor',
@@ -19,12 +22,13 @@ import { EditorWrapperComponent } from './editor-wrapper/editor-wrapper.componen
 export class EditorComponent {}
 
 @NgModule({
-  declarations: [EditorComponent, EditorWrapperComponent],
+  declarations: [EditorComponent],
   imports: [
     CommonModule,
     DraggableImageModule,
     EditorMainModule,
     EditorToolbarModule,
+    EditorWrapperComponentModule,
     RouterModule.forChild([
       {
         path: '',
