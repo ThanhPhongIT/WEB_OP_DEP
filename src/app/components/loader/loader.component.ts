@@ -6,7 +6,11 @@ import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-loader',
-  templateUrl: './loader.component.html',
+  template: `<div class="overlay" *ngIf="isLoading | async">
+              <mat-progress-spinner [diameter]="60" class="spinner" [color]="color" [mode]="mode" [value]="value">
+              </mat-progress-spinner>
+              <span class="loading-message">Xin vui lòng đợi...</span>
+            </div>`,
   styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {

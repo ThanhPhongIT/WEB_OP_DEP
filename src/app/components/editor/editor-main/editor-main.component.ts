@@ -38,7 +38,7 @@ export class EditorMainComponent implements OnInit {
   dataBs;
 
   dataUpLoad;
-  constructor(public dialogRef: MatDialogRef<EditorWrapperComponent>, private route: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
     console.log(this.dataImageSelect);
