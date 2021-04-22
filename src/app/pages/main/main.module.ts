@@ -5,7 +5,6 @@ import { BannerModule } from 'src/app/components/banner/banner.component';
 import { BrandCardModule } from 'src/app/components/card/brand-card/brand-card.component';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { CartComponent } from './cart/cart.component';
-import { DetailProductComponent } from './detail-product/detail-product.component';
 import { HomeComponent } from './home/home.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { MainComponent } from './main.component';
@@ -22,7 +21,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     CartComponent,
     ProfileComponent,
-    DetailProductComponent,
     ListProductComponent,
     PaymentComponent,
   ],

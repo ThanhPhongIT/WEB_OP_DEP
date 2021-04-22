@@ -15,15 +15,7 @@ $web-op-dep-accent: mat-palette($mat-pink, A200, A100, A400);
 $web-op-dep-warn: mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$web-op-dep-theme: mat-light-theme(
-    (
-        color: (
-            primary: $web-op-dep-primary,
-            accent: $web-op-dep-accent,
-            warn: $web-op-dep-warn,
-        ),
-    )
-);
+$web-op-dep-theme: mat-light-theme( ( color: ( primary: $web-op-dep-primary, accent: $web-op-dep-accent, warn: $web-op-dep-warn, ), ));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.

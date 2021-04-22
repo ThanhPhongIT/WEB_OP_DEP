@@ -1,0 +1,15 @@
+.toolbar {
+     ::ng-deep {
+        .mat-tab-label {
+            color: black;
+        }
+        .mat-tab-label.mat-tab-label-active {
+            background-color: #f78102;
+            color: #ffffff;
+        }
+        /* Styles for the ink bar */
+        .mat-ink-bar {
+            background-color: green;
+        }
+    }
+}

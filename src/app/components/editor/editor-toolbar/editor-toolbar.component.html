@@ -1,1 +1,27 @@
-<input type="file" (change)="imgFileSelected($event)" placeholder="Chọn ảnh">
+<div class="toolbar">
+
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <img src="assets/img/addImg.png" [style.marginRight.px]="20">
+                <span>Thêm ảnh</span>
+            </ng-template>
+            <input type="file" (change)="imgFileSelected($event)" placeholder="Chọn ảnh">
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <img src="assets/img/sticker.png" [style.marginRight.px]="20">
+                <span>Thêm sticker</span>
+            </ng-template>
+            Sticker
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <img src="assets/img/text.png" [style.marginRight.px]="20">
+                <span>Thêm text</span>
+
+            </ng-template>
+            <p>Nhập text:</p><input type="text">
+        </mat-tab>
+    </mat-tab-group>
+</div>
