@@ -8,6 +8,7 @@ import {
   EventEmitter,
   Input,
   NgModule,
+  NgZone,
   OnInit,
   Output,
   Renderer2,
@@ -34,13 +35,14 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   @ContentChild('draggableImage', { static: false })
   draggableImage!: TemplateRef<any>;
   @Input() dataImageSelect;
-
+  @ViewChild('phone') phoneArea: ElementRef;
   @ViewChild('screen') screen: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
   @ViewChild('downloadLink') downloadLink: ElementRef;
   @ViewChild('dragIconRotate') iconRotate: ElementRef;
   @ViewChild('image') img: ElementRef;
   @ViewChild('overlayDrag') overlayDrag: ElementRef;
+  @ViewChild('dragHandleCorner') dragHandleCorner: ElementRef;
   // @ViewChild(AjScreenRecoderComponent) startRecordElm: AjScreenRecoderComponent;
   dataBs;
   isDropped = new Subject();
@@ -57,19 +59,16 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   defaultY = 115;
   currentRotateY = 0;
   currentRotate2 = 0;
-  left;
-  top;
-  width;
-  height;
-  cen;
+  isDisable = new Subject();
   angle;
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2,private zone: NgZone) {}
 
   ngOnInit(): void {
     console.log(this.dataImageSelect);
   }
 
   ngAfterViewInit() {
+    this.firstRegister();
     // this.iconMouseDown$
     //   .pipe(mergeMap(() => this.mousehold$))
     //   .subscribe((res: MouseEvent) => {
@@ -77,6 +76,33 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     //     console.log(res.clientY);
     //     let rol = 0;
     //   });
+    this.setAllHandleTransform();
+  }
+  setAllHandleTransform() {
+    const rect = this.img.nativeElement.getBoundingClientRect();
+    this.setHandleTransform(this.dragHandleCorner.nativeElement, rect, 'both');
+  }
+
+  setHandleTransform(
+    dragHandle: HTMLElement,
+    targetRect: ClientRect | DOMRect,
+    position: 'x' | 'y' | 'both'
+  ) {
+    const dragRect = dragHandle.getBoundingClientRect();
+    const translateX = targetRect.width - dragRect.width;
+    const translateY = targetRect.height - dragRect.height;
+
+    if (position === 'x') {
+      dragHandle.style.transform = `translate(${translateX}px, 0)`;
+    }
+
+    if (position === 'y') {
+      dragHandle.style.transform = `translate(0, ${translateY}px)`;
+    }
+
+    if (position === 'both') {
+      dragHandle.style.transform = `translate(${translateX}px, ${translateY}px)`;
+    }
   }
   firstRegister() {
     this.mousedown$ = fromEvent(this.overlayDrag.nativeElement, 'mousedown');
@@ -151,14 +177,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
 
     this._sub = this.mousehold$.subscribe((e) => {
       e.preventDefault();
-      const {
-        left,
-        top,
-        width,
-        height,
-      } = this.img.nativeElement.getBoundingClientRect();
-      let cen = { x: left + width / 2, y: top + height / 2 };
-      this.angle = Math.atan2(e.clientY - cen.y, e.clientX - cen.x);
+
       // console.log(angle);
 
       // this.renderer.setStyle(
@@ -187,10 +206,37 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     // console.log(ev);
     // this.isDropped.next(true);
   }
+  dragMove(e) {
+    console.log(e);
+    const {
+      left,
+      top,
+      width,
+      height,
+    } = this.img.nativeElement.getBoundingClientRect();
+    let cen = { x: left + width / 2, y: top + height / 2 };
+    this.angle = Math.atan2(e.event.clientY - cen.y, e.event.clientX - cen.x);
+    // console.log(ev);
+    // this.isDropped.next(true);
+  }
+  resizeImg(drag, e) {
+    console.log(e);
+    const dragRect = drag.getBoundingClientRect();
+    const {
+      targetRectLeft,
+      targetRectTop,
+      targetRectWidth,
+      targetRectHeight,
+    } = this.img.nativeElement.getBoundingClientRect();
+    const width = dragRect.left - targetRectLeft + dragRect.width;
+    const height = dragRect.top - targetRectTop + dragRect.height;
 
+    this.renderer.setStyle(this.img.nativeElement, 'height', height);
+    this.renderer.setStyle(this.img.nativeElement, 'height', width);
+  }
   async catchImg() {
     htmlToImage
-      .toBlob(this.phoneImg.nativeElement)
+      .toBlob(this.phoneArea.nativeElement)
       .then((dataUrl) => {
         console.log(dataUrl);
         const reader = new FileReader();
