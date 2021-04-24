@@ -1,11 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { WindowService } from 'src/app/services/window.service';
+import { CommonModule } from '@angular/common';
+import { Component, NgModule, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import firebase from 'firebase';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
-import { MatDialogRef } from '@angular/material/dialog';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
-import { phoneNumberValidator } from '../../../utils/directives/validatorPhone.directive';
+import { WindowService } from 'src/app/services/window.service';
+import { phoneNumberValidator } from '../../utils/directives/validatorPhone.directive';
 
 @Component({
   selector: 'app-login',
@@ -20,16 +26,15 @@ export class LoginComponent implements OnInit {
   };
   constructor(
     private win: WindowService,
-    private loginService: LoginService,
     public dialogRef: MatDialogRef<LoginComponent>,
-    private localStorage: LocalStorageService,
-    // private toastService: ToastService
-  ) {}
+    private localStorage: LocalStorageService
+  ) // private toastService: ToastService
+  {}
   windowRef: any;
   form = new FormGroup({
-    phoneNumber: new FormControl('',  [
+    phoneNumber: new FormControl('', [
       Validators.required,
-      phoneNumberValidator(/((09|03|07|08|05)+([0-9]{8})\b)/g) 
+      phoneNumberValidator(/((09|03|07|08|05)+([0-9]{8})\b)/g),
     ]),
   });
   formotp = new FormGroup({
@@ -37,7 +42,7 @@ export class LoginComponent implements OnInit {
   });
   isSend = true;
   verificationCode: string;
-  checkPhone =  true;
+  checkPhone = true;
   checkOtp = false;
   reSend = false;
 
@@ -48,42 +53,39 @@ export class LoginComponent implements OnInit {
       'recaptcha-container'
     );
     this.windowRef.recaptchaVerifier.render();
-    this.form.get('phoneNumber').valueChanges.subscribe(val => {
+    this.form.get('phoneNumber').valueChanges.subscribe((val) => {
       const regexPhone = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/g);
-      if(regexPhone.test(val)){
+      if (regexPhone.test(val)) {
         console.log('a');
         this.checkPhone = false;
-      }else{
+      } else {
         console.log('sai');
         this.checkPhone = true;
-        
       }
     });
   }
 
-  
-
   sendLoginCode() {
     console.log(this.form.value.phoneNumber);
-      
-      let phone = '+84' + this.form.value.phoneNumber.replace("0",'');
-      
-      this.localStorage.set('phone', phone);
-      const appVerifier = this.windowRef.recaptchaVerifier;
-      firebase
-        .auth()
-        .signInWithPhoneNumber(phone, appVerifier)
-        .then((result) => {
-          console.log(result);
-          this.windowRef.confirmationResult = result;
-          this.isSend = false;
-          setTimeout(()=>{this.reSend = true}, 80000)
-        })
-        .catch((error) => {
-          console.log("lỗi", error);
-          
-        });
-      
+
+    let phone = '+84' + this.form.value.phoneNumber.replace('0', '');
+
+    this.localStorage.set('phone', phone);
+    const appVerifier = this.windowRef.recaptchaVerifier;
+    firebase
+      .auth()
+      .signInWithPhoneNumber(phone, appVerifier)
+      .then((result) => {
+        console.log(result);
+        this.windowRef.confirmationResult = result;
+        this.isSend = false;
+        setTimeout(() => {
+          this.reSend = true;
+        }, 80000);
+      })
+      .catch((error) => {
+        console.log('lỗi', error);
+      });
   }
 
   verifyLoginCode() {
@@ -103,3 +105,9 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 }
+
+@NgModule({
+  declarations: [LoginComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatDialogModule],
+})
+export class LoginComponentModule {}

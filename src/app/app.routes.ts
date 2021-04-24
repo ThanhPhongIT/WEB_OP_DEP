@@ -6,12 +6,6 @@ export const appRoutes: Routes = [
     path: '',
     loadChildren: () =>
       import('./pages/main/main.module').then((m) => m.MainModule),
-  },
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('./pages/auth/auth.module').then((m) => m.AuthModule),
-    // canActivate: [AppGuard],
-  },
+  }
   
 ];

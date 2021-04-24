@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import {  Router, RouterModule } from '@angular/router';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
-import { LoginComponent } from 'src/app/pages/auth/login/login.component';
+import { LoginComponent } from 'src/app/pages/login/login.component';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
 // import { LoginService } from 'src/app/services/login.service';
 
