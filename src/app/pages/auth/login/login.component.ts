@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
   form = new FormGroup({
     phoneNumber: new FormControl('',  [
       Validators.required,
-      Validators.minLength(10),
-      phoneNumberValidator(/bob/i) // <-- Here's how you pass in the custom validator.
+      phoneNumberValidator(/((09|03|07|08|05)+([0-9]{8})\b)/g) 
     ]),
   });
   formotp = new FormGroup({

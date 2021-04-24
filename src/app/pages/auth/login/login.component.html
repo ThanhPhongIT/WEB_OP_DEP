@@ -15,7 +15,7 @@
                     </div>
                     <div id="recaptcha-container"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-fill-out btn-block" name="login">Lấy mã xác thực</button>
+                        <button type="submit" class="btn btn-fill-out btn-block" name="login" [disabled]="form.invalid">Lấy mã xác thực</button>
                     </div>
                 </form>
                 <div class="nhapma" *ngIf="this.windowRef.confirmationResult">
