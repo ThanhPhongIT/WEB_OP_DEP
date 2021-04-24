@@ -9,7 +9,7 @@ import { PhoneType } from 'src/app/models/phone-model.model';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { ConfirmComponent } from '../../confirm/confirm.component';
+import { ConfirmComponent } from '../confirm/confirm.component';
 @Component({
   selector: 'app-editor-wrapper',
   templateUrl: './editor-wrapper.component.html',

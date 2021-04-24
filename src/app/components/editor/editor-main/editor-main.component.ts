@@ -46,7 +46,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   // @ViewChild(AjScreenRecoderComponent) startRecordElm: AjScreenRecoderComponent;
   dataBs;
   isDropped = new Subject();
-  dataUpLoad;
+  dataUpLoad = "this is data upload";
   mouseup$: Observable<any>;
   mousedown$: Observable<any>;
   mousemove$: Observable<any>;
