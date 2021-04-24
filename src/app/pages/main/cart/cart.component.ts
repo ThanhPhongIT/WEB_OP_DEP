@@ -39,6 +39,7 @@ export class CartComponent implements OnInit {
       this.infor = res.data;
       this.getCartInfor(this.infor.id);
       // this.getCartInfor(6);
+
       
     });
   }
