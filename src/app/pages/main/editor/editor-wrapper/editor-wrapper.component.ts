@@ -32,14 +32,16 @@ export class EditorWrapperComponent implements OnInit {
       });
   }
   ev;
+
   chooseImage(ev) {
     console.log(ev);
     // File Preview
     // console.log(this.imageLink, reader.readAsDataURL(ev));
   }
-  upLoadData(){
+
+  upLoadData() {
     this.dialogRef.close();
-    this.route.navigate(["/cart"])
+    this.route.navigate(['/cart']);
   }
 }
 
