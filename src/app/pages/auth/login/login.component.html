@@ -11,11 +11,12 @@
                 <h4>Nhập số điện thoại để xác thực</h4>
                 <form [formGroup]="form" (ngSubmit)="sendLoginCode()" autocomplete="off">
                     <div class="form-group">
-                        <input class="form-control" required="" type="number" formControlName="phoneNumber" name="phoneNumber" placeholder="Số điện thoại">
+                        <input autocomplete="off" class="form-control" required="true" type="text" formControlName="phoneNumber" name="phoneNumber" placeholder="Số điện thoại">
+                        <span *ngIf="checkPhone && (form.dirty || form.touched)" [style.color]="'#ff0000'">Sai định dạng!</span>
                     </div>
                     <div id="recaptcha-container"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-fill-out btn-block" name="login" [disabled]="form.invalid">Lấy mã xác thực</button>
+                        <button type="submit" class="btn btn-fill-out btn-block" name="login" [disabled]="checkPhone">Lấy mã xác thực</button>
                     </div>
                 </form>
                 <div class="nhapma" *ngIf="this.windowRef.confirmationResult">
@@ -23,13 +24,14 @@
                     <form [formGroup]="formotp" (ngSubmit)="verifyLoginCode()" autocomplete="off">
                         <div class="form-group">
                             <input class="form-control" required="" type="text" formControlName="otp" name="otp" placeholder="Nhập mã otp">
+                            <span *ngIf="checkOtp && (formotp.dirty || formotp.touched)" [style.color]="'#ff0000'">Nhập sai mã xác thực</span>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-fill-out btn-block" name="login">Đăng nhập</button>
                         </div>
                     </form>
                     <div class="reset d-flex align-items-center jusstify-content-center">
-                        <p>Chưa nhận được mã? </p><a href="#"> Gửi lại !</a>
+                        <p>Chưa nhận được mã? <span (click)="verifyLoginCode()" [style.color]="'#d85040'" *ngIf="reSend">Gửi lại</span> </p>
                     </div>
 
                 </div>

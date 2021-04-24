@@ -10,6 +10,9 @@
     }
     .search {
         cursor: pointer;
+        img {
+            width: 15px !important;
+        }
     }
 }
 
@@ -69,6 +72,10 @@ header {
             cursor: pointer;
             &:focus {
                 outline: none;
+            }
+            img {
+                width: 20px;
+                height: 20px;
             }
         }
         .cart-logo {
