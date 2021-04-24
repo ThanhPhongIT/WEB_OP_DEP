@@ -1,9 +1,9 @@
-<div class="editor_wrapper">
-    <app-editor-main (onUploadProduct)="upLoadData()" [dataImageSelect]="imgBase64">
-        <ng-template #draggableImage>
-            <img [style.height.px]="400" [crossOrigin]="'anonymous'" [src]="data?.image?.editor[1]?.image" alt="Ảnh phone">
-        </ng-template>
-    </app-editor-main>
-    <app-editor-toolbar (onChooseImage)="imgBase64 = $event"></app-editor-toolbar>
-    <!-- <mat-icon (click)="dialogRef.close()">close</mat-icon> -->
+<div class="editor_wrapper container">
+  <app-editor-main [dataImageSelect]="imgBase64">
+    <ng-template #draggableImage>
+      <img [style.height.px]="600" [crossOrigin]="'anonymous'" [src]="data?.image?.editor[1]?.image" alt="Ảnh phone">
+    </ng-template>
+  </app-editor-main>
+  <app-editor-toolbar (onChooseImage)="imgBase64 = $event"></app-editor-toolbar>
+  <mat-icon (click)="dialogRef.close()">close</mat-icon>
 </div>

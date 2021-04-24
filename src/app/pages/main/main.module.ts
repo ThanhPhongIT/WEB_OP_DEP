@@ -11,9 +11,9 @@ import { MainComponent } from './main.component';
 import { mainRoutes } from './main.routes';
 import { ProfileComponent } from './profile/profile.component';
 import { PaymentComponent } from './payment/payment.component';
-import { RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EditorWrapperComponentModule } from './editor/editor-wrapper/editor-wrapper.component';
+import { RegexPhonePipeModule } from 'src/app/utils/pipes/regexPhone.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
@@ -31,10 +31,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BannerModule,
     EditorWrapperComponentModule,
     BrandCardModule,
-    RegexPhonePipeModule, FormsModule, ReactiveFormsModule
-  ],
-  providers: [
     MatDialogModule,
+    RegexPhonePipeModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
+  providers: [],
 })
 export class MainModule {}
