@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { WindowService } from 'src/app/services/window.service';
 import firebase from 'firebase';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { phoneNumberValidator } from '../../../utils/directives/validatorPhone.directive';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +27,11 @@ export class LoginComponent implements OnInit {
   ) {}
   windowRef: any;
   form = new FormGroup({
-    phoneNumber: new FormControl(''),
+    phoneNumber: new FormControl('',  [
+      Validators.required,
+      Validators.minLength(10),
+      phoneNumberValidator(/bob/i) // <-- Here's how you pass in the custom validator.
+    ]),
   });
   formotp = new FormGroup({
     otp: new FormControl(''),
@@ -44,6 +47,8 @@ export class LoginComponent implements OnInit {
     );
     this.windowRef.recaptchaVerifier.render();
   }
+
+  
 
   sendLoginCode() {
     // if (this.form.value.phoneNumber) {
