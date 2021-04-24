@@ -1,0 +1,61 @@
+.title {
+    text-align: center;
+    font-size: 29px;
+    font-weight: 600;
+    margin-bottom: 100px;
+    text-transform: uppercase;
+    margin-top: 60px;
+}
+
+.infor {
+    position: relative;
+    .edit {
+        position: absolute;
+        top: 20px;
+        right: 0;
+        cursor: pointer;
+    }
+}
+
+.logout {
+    width: 200px;
+    margin: auto;
+    margin: 60px auto;
+}
+
+.right {
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+select {
+    &:focus {
+        outline: none;
+        width: 100%;
+    }
+}
+
+.discount {
+    margin-bottom: 100px;
+    width: 100%;
+    .apdung {
+        width: 200px;
+        margin-left: 50px;
+    }
+    input {
+        border: none;
+        border-bottom: 1px solid #000;
+        width: 100%;
+    }
+}
+
+.infor-cart {
+    background-color: #f2f2f2;
+    padding: 32px;
+    .itemi {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 32px;
+    }
+}

@@ -37,8 +37,8 @@ export class CartComponent implements OnInit {
     })
     .subscribe((res: any) => {
       this.infor = res.data;
-      // this.getCartInfor(this.infor.id);
-      this.getCartInfor(6);
+      this.getCartInfor(this.infor.id);
+      // this.getCartInfor(6);
       
     });
   }
