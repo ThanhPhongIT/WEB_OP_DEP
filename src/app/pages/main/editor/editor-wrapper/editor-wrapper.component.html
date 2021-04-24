@@ -1,7 +1,7 @@
 <div class="editor_wrapper container">
     <app-editor-main [dataImageSelect]="imgBase64" (onUploadProduct)="upLoadData($event)">
         <ng-template #draggableImage>
-            <img [style.height.px]="600" [crossOrigin]="'anonymous'" [src]="data?.image?.editor[1]?.image" alt="Ảnh phone">
+            <img [style.height.px]="600" [crossOrigin]="'anonymous'" [src]="data?.data?.editor[1]?.image" alt="Ảnh phone">
         </ng-template>
     </app-editor-main>
     <app-editor-toolbar (onChooseImage)="imgBase64 = $event"></app-editor-toolbar>

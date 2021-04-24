@@ -32,18 +32,13 @@ export class ListProductComponent implements OnInit {
     this.getListProductCategory(this.category_id);
   }
 
-  openDialog(image): void {
+  openDialog(data): void {
     const dialogRef = this.dialog.open(EditorWrapperComponent, {
       maxWidth: '100vw',
       maxHeight: '100vh',
       height: '100%',
       width: '100%',
-      data: { image },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+      data: { data },
     });
   }
 

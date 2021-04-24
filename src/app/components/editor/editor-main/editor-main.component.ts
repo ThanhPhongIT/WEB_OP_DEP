@@ -46,7 +46,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   // @ViewChild(AjScreenRecoderComponent) startRecordElm: AjScreenRecoderComponent;
   dataBs;
   isDropped = new Subject();
-  dataUpLoad = "this is data upload";
+  dataUpLoad;
   mouseup$: Observable<any>;
   mousedown$: Observable<any>;
   mousemove$: Observable<any>;
@@ -64,7 +64,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   constructor(private renderer: Renderer2,private zone: NgZone) {}
 
   ngOnInit(): void {
-    console.log(this.dataImageSelect);
+    // console.log(this.dataImageSelect);
   }
 
   ngAfterViewInit() {
@@ -72,7 +72,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     // this.iconMouseDown$
     //   .pipe(mergeMap(() => this.mousehold$))
     //   .subscribe((res: MouseEvent) => {
-    //     // console.log(res);
+        // console.log(res);
     //     console.log(res.clientY);
     //     let rol = 0;
     //   });
@@ -243,7 +243,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
         reader.readAsDataURL(dataUrl);
         reader.onload = () => {
           this.dataBs = reader.result as string;
-          // console.log(this.imgSrc);
+          this.dataUpLoad = this.dataBs;
         };
       })
       .catch(function (error) {
@@ -252,7 +252,10 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   }
 
   uploadProduct() {
-    this.onUploadProduct.emit(this.dataUpLoad);
+    if(this.dataUpLoad){
+      this.onUploadProduct.emit(this.dataUpLoad);
+    }
+    
   }
 }
 

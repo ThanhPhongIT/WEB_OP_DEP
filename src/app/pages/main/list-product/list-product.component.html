@@ -1,11 +1,11 @@
 <div class="section">
-  <div class="container">
-    <div class="title">{{title }}</div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-12 mb-50" (click)="openDialog(a)" *ngFor="let a of listCategory">
-        <app-brand-card [title]="a.name" [img]="a.img_url" [price]="a.price" [discountPrice]="a.price_discount">
-        </app-brand-card>
-      </div>
+    <div class="container">
+        <div class="title">{{title }}</div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12 mb-50" (click)="openDialog(a)" *ngFor="let a of listCategory">
+                <app-brand-card [title]="a.name" [img]="a.img_url" [price]="a.price" [discountPrice]="a.price_discount">
+                </app-brand-card>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

@@ -1,6 +1,6 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { Component, Inject, NgModule, OnInit } from '@angular/core';
+import { Component, Inject, NgModule, OnChanges, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DraggableImageModule } from 'src/app/components/editor/draggable-image/draggable-image.component';
 import { EditorMainModule } from 'src/app/components/editor/editor-main/editor-main.component';
@@ -19,29 +19,24 @@ export class EditorWrapperComponent implements OnInit {
   private imageLink: string;
   imgBase64;
   constructor(
-    private productCategoryService: ProductCategoryService,
     public dialogRef: MatDialogRef<EditorWrapperComponent>,
     public dialog: MatDialog,
-    private route: Router,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit(): void {
-    this.productCategoryService
-      .getListProductCategory(PhoneType.Apple)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    
   }
-  ev;
+  
+  
 
   openDialogConfirm(image): void {
     const dialogRef = this.dialog.open( ConfirmComponent, {
       maxWidth: '50vw',
-      maxHeight: '70vh',
+      maxHeight: '80vh',
       height: '100%',
       width: '100%',
-      data: { image },
+      data:  {data: this.data, img: image},
     });
   }
 
@@ -52,7 +47,6 @@ export class EditorWrapperComponent implements OnInit {
   }
 
   upLoadData(ev) {
-    console.log(ev);
     this.openDialogConfirm(ev);
   }
 }
