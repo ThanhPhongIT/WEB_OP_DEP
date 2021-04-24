@@ -6,6 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-editor-toolbar',
@@ -32,7 +33,7 @@ export class EditorToolbarComponent implements OnInit {
 
 @NgModule({
   declarations: [EditorToolbarComponent],
-  imports: [CommonModule],
+  imports: [CommonModule,MatTabsModule],
   exports: [EditorToolbarComponent],
 })
 export class EditorToolbarModule {}

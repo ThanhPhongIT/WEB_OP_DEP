@@ -1,7 +1,5 @@
 import { Routes } from '@angular/router';
-import { EditorComponent } from 'src/app/pages/main/editor/editor.component';
 import { CartComponent } from './cart/cart.component';
-import { DetailProductComponent } from './detail-product/detail-product.component';
 import { HomeComponent } from './home/home.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { MainComponent } from './main.component';
@@ -16,10 +14,6 @@ export const mainRoutes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-      },
-      {
-        path: 'detail',
-        component: DetailProductComponent,
       },
       {
         path: 'editor',

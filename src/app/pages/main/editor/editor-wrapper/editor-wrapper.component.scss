@@ -1,9 +1,10 @@
 .editor_wrapper {
     display: grid;
-    grid-template-columns: auto 100px;
+    grid-template-columns: auto 500px;
     height: 800px;
     align-content: center;
 }
+
 mat-icon {
     position: absolute;
     right: 40px;

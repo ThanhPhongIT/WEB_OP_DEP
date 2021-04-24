@@ -4,22 +4,26 @@ import {
   Component,
   ContentChild,
   ElementRef,
+  EventEmitter,
   Input,
   NgModule,
   OnInit,
+  Output,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
-import { capture, OutputType } from 'html-screen-capture-js';
-import jsPDF from 'jspdf';
-declare let html2canvas: any;
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import * as htmlToImage from 'html-to-image';
+import { EditorWrapperComponent } from 'src/app/pages/main/editor/editor-wrapper/editor-wrapper.component';
+declare let html2canvas: any;
 @Component({
   selector: 'app-editor-main',
   templateUrl: './editor-main.component.html',
   styleUrls: ['./editor-main.component.scss'],
 })
 export class EditorMainComponent implements OnInit {
+  @Output() onUploadProduct = new EventEmitter();
   @ViewChild('phoneImage')
   phoneImg: ElementRef;
 
@@ -32,6 +36,8 @@ export class EditorMainComponent implements OnInit {
   @ViewChild('downloadLink') downloadLink: ElementRef;
   // @ViewChild(AjScreenRecoderComponent) startRecordElm: AjScreenRecoderComponent;
   dataBs;
+
+  dataUpLoad;
   constructor() {}
 
   ngOnInit(): void {
@@ -56,6 +62,10 @@ export class EditorMainComponent implements OnInit {
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
       });
+  }
+
+  uploadProduct(){
+    this.onUploadProduct.emit(this.dataUpLoad);
   }
 }
 

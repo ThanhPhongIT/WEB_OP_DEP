@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     public dialogRef: MatDialogRef<LoginComponent>,
     private localStorage: LocalStorageService,
-    private toastService: ToastService
+    // private toastService: ToastService
   ) {}
   windowRef: any;
   form = new FormGroup({
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
   }
 
   sendLoginCode() {
-    if (this.form.value.phoneNumber) {
-      this.toastService.showError('Bạn chưa nhập số điện thoại', "Lỗi");
-    } else {
+    // if (this.form.value.phoneNumber) {
+    //   this.toastService.showError('Bạn chưa nhập số điện thoại', "Lỗi");
+    // } else {
       let phone = '+84' + this.form.value.phoneNumber;
       this.localStorage.set('phone', phone);
       const appVerifier = this.windowRef.recaptchaVerifier;
@@ -61,9 +61,9 @@ export class LoginComponent implements OnInit {
           this.isSend = false;
         })
         .catch((error) => {
-          this.toastService.showError(error, 'Lỗi');
+          // this.toastService.showError(error, 'Lỗi');
         });
-    }
+    
   }
 
   verifyLoginCode() {
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close();
       })
       .catch((error) => {
-        this.toastService.showError(error, 'Lỗi');
+        // this.toastService.showError(error, 'Lỗi');
       });
   }
   closeDialog() {
