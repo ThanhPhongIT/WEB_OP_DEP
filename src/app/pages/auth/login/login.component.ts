@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { WindowService } from 'src/app/services/window.service';
 import firebase from 'firebase';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
-import { ToastService } from 'src/app/services/toast.service';
+import { phoneNumberValidator } from '../../../utils/directives/validatorPhone.directive';
 
 @Component({
   selector: 'app-login',
@@ -28,13 +27,19 @@ export class LoginComponent implements OnInit {
   ) {}
   windowRef: any;
   form = new FormGroup({
-    phoneNumber: new FormControl(''),
+    phoneNumber: new FormControl('',  [
+      Validators.required,
+      phoneNumberValidator(/((09|03|07|08|05)+([0-9]{8})\b)/g) 
+    ]),
   });
   formotp = new FormGroup({
     otp: new FormControl(''),
   });
   isSend = true;
   verificationCode: string;
+  checkPhone =  true;
+  checkOtp = false;
+  reSend = false;
 
   user: any;
   ngOnInit(): void {
@@ -43,13 +48,26 @@ export class LoginComponent implements OnInit {
       'recaptcha-container'
     );
     this.windowRef.recaptchaVerifier.render();
+    this.form.get('phoneNumber').valueChanges.subscribe(val => {
+      const regexPhone = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/g);
+      if(regexPhone.test(val)){
+        console.log('a');
+        this.checkPhone = false;
+      }else{
+        console.log('sai');
+        this.checkPhone = true;
+        
+      }
+    });
   }
 
+  
+
   sendLoginCode() {
-    // if (this.form.value.phoneNumber) {
-    //   this.toastService.showError('Bạn chưa nhập số điện thoại', "Lỗi");
-    // } else {
-      let phone = '+84' + this.form.value.phoneNumber;
+    console.log(this.form.value.phoneNumber);
+      
+      let phone = '+84' + this.form.value.phoneNumber.replace("0",'');
+      
       this.localStorage.set('phone', phone);
       const appVerifier = this.windowRef.recaptchaVerifier;
       firebase
@@ -59,11 +77,13 @@ export class LoginComponent implements OnInit {
           console.log(result);
           this.windowRef.confirmationResult = result;
           this.isSend = false;
+          setTimeout(()=>{this.reSend = true}, 80000)
         })
         .catch((error) => {
-          // this.toastService.showError(error, 'Lỗi');
+          console.log("lỗi", error);
+          
         });
-    
+      
   }
 
   verifyLoginCode() {
@@ -75,7 +95,8 @@ export class LoginComponent implements OnInit {
         this.dialogRef.close();
       })
       .catch((error) => {
-        // this.toastService.showError(error, 'Lỗi');
+        console.log(error);
+        this.checkOtp = true;
       });
   }
   closeDialog() {

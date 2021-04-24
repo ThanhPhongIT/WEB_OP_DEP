@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FooterModule } from '../footer/footer.component';
 import { HeaderModule } from '../header/header.component';
-import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 @NgModule({
-  declarations: [MainLayoutComponent, AuthLayoutComponent],
+  declarations: [MainLayoutComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -15,6 +14,6 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     FooterModule
   ],
 
-  exports: [MainLayoutComponent, AuthLayoutComponent],
+  exports: [MainLayoutComponent],
 })
 export class LayoutModule {}

@@ -1,1 +1,71 @@
-<p>payment works!</p>
+<div class="container">
+    <p class="title">Thanh toán</p>
+    <p style="font-weight: bold;">Thông tin giao hàng</p>
+    <div class="infor" *ngIf="infor && !isEdit">
+
+        <div class="row mb-5">
+            <div class="col-6 left">Tên</div>
+            <div class="content">{{infor.full_name}}</div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số điện thoại</div>
+            <div class="content">{{infor.phone_number | regexPhone}}</div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số nhà, đường phố</div>
+            <div class="content">{{infor.address}}</div>
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Tỉnh</div>
+            <div class="content">{{infor.city_name}}</div>
+        </div>
+        <button class="logout btn btn-fill-out btn-block" (click)="edit()">Chỉnh sửa</button>
+    </div>
+    <form class="infor" *ngIf="infor && isEdit" [formGroup]="profileForm">
+        <div class="row mb-5">
+            <div class="col-6 left">Tên</div>
+            <input type="text" class="col-6 right" [value]="infor.full_name" formControlName="fullName" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số điện thoại</div>
+            <input type="text" class="col-6 right" [value]="infor.phone_number" formControlName="phoneNumber" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Số nhà, đường phố</div>
+            <input type="text" class="col-6 right" [value]="infor.address" formControlName="address" />
+        </div>
+        <div class="row mb-5">
+            <div class="col-6 left">Tỉnh</div>
+            <select class="col-6 right" id="city" value="7" formControlName="cityId">
+                <option [value]="item.id" *ngFor="let item of listCity">{{item.name}}</option>
+              </select>
+        </div>
+        <button class="logout btn btn-fill-out btn-block" (click)="confirm()">Lưu thông tin</button>
+    </form>
+
+
+    <div class="discount d-flex align-items-center justify-content-between">
+        <input [(ngModel)]="discountCode" type="text" placeholder="Nhập mã khuyễn mãi, giảm giá">
+        <button class="btn btn-fill-out btn-block apdung " (click)="discount()">Áp dụng</button>
+    </div>
+
+    <div class="infor-cart mb-5">
+        <div class="itemi">
+            <div class="left">Giảm giá</div>
+            <div class="right">{{cartInfor.amount_discount | currency: "VND"}}</div>
+        </div>
+        <div class="itemi">
+            <div class="left">Shipping</div>
+            <div class="right">{{cartInfor.price_shipping | currency: "VND"}}</div>
+        </div>
+        <div class="itemi mb-5">
+            <div class="left">Tổng tiền</div>
+            <div class="right">{{cartInfor.price_discount | currency: "VND"}}</div>
+        </div>
+        <button class="btn btn-fill-out btn-block mt-5 w-50 m-auto">Mua hàng</button>
+    </div>
+
+
+
+
+</div>
