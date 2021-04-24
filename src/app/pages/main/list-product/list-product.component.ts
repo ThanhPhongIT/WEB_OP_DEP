@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router, RouterState } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductCategoryModel } from '../../../models/product-category.model';
 import {
   EditorWrapperComponent,
-  EditorWrapperComponentModule,
 } from '../editor/editor-wrapper/editor-wrapper.component';
 
 @Component({
@@ -19,7 +16,7 @@ import {
 export class ListProductComponent implements OnInit {
   listCategory: ProductCategoryModel[];
   category_id: number;
-  title: String;
+  title: string;
 
   constructor(
     private productCategoryService: ProductCategoryService,

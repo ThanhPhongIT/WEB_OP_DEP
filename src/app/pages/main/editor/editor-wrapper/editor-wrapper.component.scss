@@ -2,13 +2,16 @@
     display: grid;
     grid-template-columns: auto;
     height: 100%;
-
     align-content: center;
 }
 
-mat-icon {
+.close {
     position: absolute;
     right: 40px;
     font-size: 3em;
     cursor: pointer;
+    height: 40px;
+    img {
+        height: 100%;
+    }
 }
