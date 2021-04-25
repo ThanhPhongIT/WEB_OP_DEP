@@ -11,9 +11,12 @@ import { UploadProductService } from 'src/app/services/uploadProduct.service';
   selector: 'app-confirm',
   template: `
     <div class="show-img">
-		<img [src]="imgSrc" alt=""/>
-	</div>
-    <button class=" btn btn-fill-out btn-block m-auto w-50 mt-5" (click)="conFirm()">
+      <img [src]="imgSrc" alt="" />
+    </div>
+    <button
+      class=" btn btn-fill-out btn-block m-auto w-50 mt-5"
+      (click)="conFirm()"
+    >
       Xác nhận
     </button>
   `,
@@ -43,29 +46,28 @@ export class ConfirmComponent implements OnInit {
     this.imgSrc = this.dataPass.img.preview;
     this.imgUpload = this.dataPass.img.upload;
     this.userImg = this.dataPass.imgUser;
-    this.typeImgUser = this.userImg.type.replace("image/", '');
+    this.typeImgUser = this.userImg.type.replace('image/', '');
   }
 
   conFirm() {
     const formData = new FormData();
-    formData.append('photo', this.userImg, 'output.'+this.typeImgUser);
-    formData.append('print', this.imgUpload, 'print.png');
-    formData.append('preview', this.imgUpload, 'output.png');
+    const myFile = new File([this.imgUpload], 'print.png', {
+      type: this.imgUpload.type,
+    });
+    formData.append('photo', this.userImg);
+    formData.append('print', myFile);
+    formData.append('preview', myFile);
     this.uploadProductService
-      .create(
-        formData,
-        {
-          user_id: this.user_id,
-          product_id: this.dataProduct.id,
-          price: this.dataProduct.price,
-        },
-        new HttpHeaders({'Content-Type': 'multipart/form-data'})
-      )
+      .create(formData, {
+        user_id: this.user_id,
+        product_id: this.dataProduct.id,
+        price: this.dataProduct.price,
+      })
       .subscribe((res: any) => {
         console.log(res);
+        this.dialogConfirmRef.closeAll();
+        this.router.navigate(['cart']);
       });
-    this.dialogConfirmRef.closeAll();
-    this.router.navigate(['cart']);
   }
 
   getInfor() {
