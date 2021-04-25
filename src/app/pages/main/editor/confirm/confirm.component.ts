@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -22,6 +23,9 @@ export class ConfirmComponent implements OnInit {
   user_id;
   dataProduct;
   imgSrc;
+  userImg;
+  imgUpload;
+  typeImgUser;
   constructor(
     private router: Router,
     private dialogConfirmRef: MatDialog,
@@ -36,17 +40,26 @@ export class ConfirmComponent implements OnInit {
     this.loadService.show();
     this.getInfor();
     this.dataProduct = this.dataPass.data.data;
-    this.imgSrc = this.dataPass.img;
+    this.imgSrc = this.dataPass.img.preview;
+    this.imgUpload = this.dataPass.img.upload;
+    this.userImg = this.dataPass.imgUser;
+    this.typeImgUser = this.userImg.type.replace("image/", '');
   }
+
   conFirm() {
+    const formData = new FormData();
+    formData.append('photo', this.userImg, 'output.'+this.typeImgUser);
+    formData.append('print', this.imgUpload, 'print.png');
+    formData.append('preview', this.imgUpload, 'output.png');
     this.uploadProductService
       .create(
-        {},
+        formData,
         {
           user_id: this.user_id,
           product_id: this.dataProduct.id,
           price: this.dataProduct.price,
-        }
+        },
+        new HttpHeaders({'Content-Type': 'multipart/form-data'})
       )
       .subscribe((res: any) => {
         console.log(res);
@@ -65,8 +78,6 @@ export class ConfirmComponent implements OnInit {
       })
       .subscribe((res: any) => {
         this.user_id = res.data.id;
-        console.log(this.user_id);
-
         this.loadService.hide();
       });
   }

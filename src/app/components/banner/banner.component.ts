@@ -14,12 +14,6 @@ export class BannerComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSwiper(swiper) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
 }
 
 @NgModule({
