@@ -1,30 +1,48 @@
 <div class="done btn btn-fill-out btn-block" (click)="catchImg()" (click)="uploadProduct()">
-    Hoàn tất
+  Hoàn tất
 </div>
 <div class="drag_area" #phoneImage>
-    <!-- <div class="done btn btn-fill-out btn-block" (click)="catchImg()" (click)="uploadProduct()">
+  <!-- <div class="overlay_top " *ngIf="isComplete | async"></div> -->
+  <!-- <div class="done btn btn-fill-out btn-block" (click)="catchImg()" (click)="uploadProduct()">
     Hoàn tất
   </div> -->
 
-    <div class="example-handle" cdkDragBoundary=".drag_area" #dragIconRotate cdkDrag (cdkDragMoved)="dragMove($event)" (cdkDragReleased)="drop($event)">
-        <img src="assets/img/sync-alt-solid.svg" alt="">
-    </div>
-    <div class="phone_img" [style.z-index]="'100'" #phone>
-        <div (click)="isDropped.next(true)" [style.he] [style.z-index]="(isDropped | async) ? '-1' : '100'" class="drag_select_img" #image *ngIf="dataImageSelect" cdkDrag (cdkDragMoved)="isDropped.next()" (cdkDragReleased)="isDropped.next(true)">
-            <img [style.transform]="'rotate(' + angle + 'rad)'" [src]="dataImageSelect" [crossOrigin]="'anonymous'" alt="" />
+  <div class="example-handle" cdkDragBoundary=".drag_area" #dragIconRotate cdkDrag (cdkDragMoved)="dragMove($event)"
+    (cdkDragReleased)="drop($event)">
+    <img src="assets/img/sync-alt-solid.svg" alt="">
+  </div>
+  <div class="phone_img" [style.z-index]="'100'" [style.overflow]="(isComplete | async)? 'hidden':'unset'" #phone>
 
-            <span #dragHandleCorner [cdkDragLockAxis]="lockAxis" class="dragHandle corner" cdkDrag (cdkDragMoved)="resizeImg(dragHandleCorner, $event)"></span>
-        </div>
-        <div class="draggable" (click)="isDropped.next()" [style.z-index]="!(isDropped | async) ? '-1' : '100'">
-            <ng-container *ngTemplateOutlet="draggableImage"></ng-container>
-        </div>
-        <!-- <div class="overlay_drag" [style.z-index]="(isDropped | async) ? '100': '-1'" #overlayDrag>
+    <div (click)="isDropped.next(true)" [style.height.px]="boxHeight" [style.width.px]="boxWidth"
+      [style.z-index]="(isDropped | async) ? '-1' : '100'" class="drag_select_img" #image *ngIf="dataImageSelect"
+      cdkDrag (cdkDragMoved)="isDropped.next()" (cdkDragReleased)="isDropped.next(true)">
+      <img [style.transform]="'rotate(' + angle + 'rad)'" [src]="dataImageSelect" [crossOrigin]="'anonymous'" alt="" />
+      <div #resizeBox class="container" [style.width.px]="boxWidth" [style.height.px]="boxHeight"
+        *ngIf="!(isComplete | async)">
+        <span #dragHandleCorner [cdkDragLockAxis]="'both'" class="dragHandle corner" cdkDrag
+          (cdkDragMoved)="dragMove2(dragHandleCorner, $event)"></span>
+        <span #dragHandleRight cdkDragLockAxis="x" class="dragHandle right" cdkDrag
+          (cdkDragMoved)="dragMove2(dragHandleRight, $event)"></span>
+        <span #dragHandleBottom cdkDragLockAxis="y" class="dragHandle bottom" cdkDrag
+          (cdkDragMoved)="dragMove2(dragHandleBottom, $event)"></span>
+        <!-- <span #dragHandleCorner class="dragHandle corner" cdkDrag (cdkDragMoved)="resizeImg($event)"></span> -->
+      </div>
 
-    </div> -->
+      <!-- <span class="full" style="width: 100%;">Hello World!</span> -->
     </div>
+    <div class="draggable" (click)="isDropped.next()" [style.z-index]="!(isDropped | async) ? '-1' : '100'">
+      <div class="overlay_left " *ngIf="isComplete | async"></div>
+      <div class="">
+        <ng-container *ngTemplateOutlet="draggableImage"></ng-container>
+      </div>
+      <div class="overlay_right " *ngIf="isComplete | async"></div>
+
+    </div>
+
+  </div>
+  <!-- <div class="overlay_bottom " *ngIf="isComplete | async"></div> -->
 </div>
-
-<!-- <img [src]="dataBs" alt="" srcset=""> -->
+<img [src]="dataBs" alt="" srcset="">
 <!-- <div id="download">
   <img [src]="dataBs">
   <a #downloadLink download></a>

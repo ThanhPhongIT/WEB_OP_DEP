@@ -1,4 +1,4 @@
-import { DragDropModule, DragRef } from '@angular/cdk/drag-drop';
+import { CdkDragMove, DragDropModule, DragRef } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -42,7 +42,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   @ViewChild('dragIconRotate') iconRotate: ElementRef;
   @ViewChild('image') img: ElementRef;
   @ViewChild('overlayDrag') overlayDrag: ElementRef;
-  @ViewChild('dragHandleCorner') dragHandleCorner: ElementRef;
+  // @ViewChild('dragHandleCorner') dragHandleCorner: ElementRef;
   // @ViewChild(AjScreenRecoderComponent) startRecordElm: AjScreenRecoderComponent;
   dataBs;
   isDropped = new Subject();
@@ -61,18 +61,20 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   currentRotate2 = 0;
   isDisable = new Subject();
   angle;
-  constructor(private renderer: Renderer2,private zone: NgZone) {}
+  boxHeight = 570;
+  boxWidth = 320;
+  isComplete = new Subject();
+  constructor(private renderer: Renderer2, private zone: NgZone) {}
 
   ngOnInit(): void {
     // console.log(this.dataImageSelect);
   }
 
   ngAfterViewInit() {
-    this.firstRegister();
     // this.iconMouseDown$
     //   .pipe(mergeMap(() => this.mousehold$))
     //   .subscribe((res: MouseEvent) => {
-        // console.log(res);
+    // console.log(res);
     //     console.log(res.clientY);
     //     let rol = 0;
     //   });
@@ -101,105 +103,10 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     }
 
     if (position === 'both') {
-      dragHandle.style.transform = `translate(${translateX}px, ${translateY}px)`;
+      // dragHandle.style.transform = `translate(${translateX}px, ${translateY}px)`;
     }
   }
-  firstRegister() {
-    this.mousedown$ = fromEvent(this.overlayDrag.nativeElement, 'mousedown');
-    this.mousedown$.subscribe((e) => {
-      this.currentRotateY = e.y;
-    });
-    this.mousemove$ = fromEvent(this.overlayDrag.nativeElement, 'mousemove');
-    this.mouseup$ = fromEvent(this.overlayDrag.nativeElement, 'mouseup');
 
-    this.mouseup$.subscribe((e) => {
-      this.currentRotateY = e.y;
-      this.stopRotate.next(true);
-      this.unsub();
-      this.register();
-    });
-
-    // switchMap is extremely helpful
-    // map source observable to inner observable. remember it as switch to new observable.
-    this.mousehold$ = this.mousedown$.pipe(
-      debounceTime(300),
-      switchMap(() => this.mousemove$),
-      takeUntil(this.stopRotate)
-    );
-
-    this._sub = this.mousehold$.subscribe((e: MouseEvent) => {
-      e.preventDefault();
-      const {
-        left,
-        top,
-        width,
-        height,
-      } = this.img.nativeElement.getBoundingClientRect();
-      // console.log(e);
-      let cen = { x: left + width / 2, y: top + height / 2 };
-      this.angle = Math.atan2(e.clientY - cen.y, e.clientX - cen.x);
-      // console.log(angle);
-      // this.renderer.setStyle(
-      //   this.img.nativeElement,
-      //   'transform',
-      //   `rotate(${this.angle}rad)`
-      // );
-    });
-    // switchMap is extremely helpful
-    // map source observable to inner observable. remember it as switch to new observable.
-    // this.mousehold$ = this.mousedown$
-    //   .switchMap(() => this.mousemove$)
-    //   .takeUntil(this.mouseup$);
-    // this.mousedown$.subscribe((e) => {
-    //   this.stopRotate.next();
-    // });
-
-    // this.mouseup$.subscribe((e) => {
-    //   this.stopRotate.next(true);
-    //   this.currentRotate = e.clientY;
-    // });
-
-    // this.mousehold$.subscribe((res) => {
-    //   console.log(res);
-    // });
-  }
-  unsub() {
-    if (this._sub) {
-      this._sub.unsubscribe();
-      this.stopRotate.next(true);
-    }
-  }
-  register() {
-    this.mousehold$ = this.mousedown$.pipe(
-      switchMap(() => this.mousemove$),
-      takeUntil(this.stopRotate)
-    );
-
-    this._sub = this.mousehold$.subscribe((e) => {
-      e.preventDefault();
-
-      // console.log(angle);
-
-      // this.renderer.setStyle(
-      //   this.img.nativeElement,
-      //   'transform',
-      //   `rotate(${this.angle}rad)`
-      // );
-    });
-  }
-
-  resgiterEvent() {
-    // switchMap is extremely helpful
-    // map source observable to inner observable. remember it as switch to new observable.
-    (this.mousehold$ as any) = this.mousedown$
-      .pipe(
-        switchMap(() => this.mousemove$),
-        takeUntil(this.mouseup$)
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
-  }
   drop(ev) {
     console.log(ev);
 
@@ -219,43 +126,80 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     // console.log(ev);
     // this.isDropped.next(true);
   }
-  resizeImg(drag, e) {
+  resizeImg(e) {
     console.log(e);
-    const dragRect = drag.getBoundingClientRect();
-    const {
-      targetRectLeft,
-      targetRectTop,
-      targetRectWidth,
-      targetRectHeight,
-    } = this.img.nativeElement.getBoundingClientRect();
-    const width = dragRect.left - targetRectLeft + dragRect.width;
-    const height = dragRect.top - targetRectTop + dragRect.height;
-
-    this.renderer.setStyle(this.img.nativeElement, 'height', height);
-    this.renderer.setStyle(this.img.nativeElement, 'height', width);
+    if (e.delta.x < 0 || e.delta.y < 0) {
+      this.boxHeight -= 2;
+      return (this.boxWidth -= 2);
+    } else {
+      this.boxHeight += 2;
+      return (this.boxWidth += 2);
+    }
   }
   async catchImg() {
-    htmlToImage
-      .toBlob(this.phoneArea.nativeElement)
-      .then((dataUrl) => {
-        console.log(dataUrl);
-        const reader = new FileReader();
-        reader.readAsDataURL(dataUrl);
-        reader.onload = () => {
-          this.dataBs = reader.result as string;
-          this.dataUpLoad = this.dataBs;
-        };
-      })
-      .catch(function (error) {
-        console.error('oops, something went wrong!', error);
-      });
+    let comp = await this.isComplete.next(true);
+    setTimeout(() => {
+      htmlToImage
+        .toBlob(this.phoneArea.nativeElement)
+        .then((dataUrl) => {
+          console.log(dataUrl);
+          const reader = new FileReader();
+          reader.readAsDataURL(dataUrl);
+          reader.onload = () => {
+            this.dataBs = reader.result as string;
+            this.dataUpLoad = this.dataBs;
+          };
+        })
+        .catch(function (error) {
+          console.error('oops, something went wrong!', error);
+        });
+    }, 500);
   }
 
   uploadProduct() {
-    if(this.dataUpLoad){
+    if (this.dataUpLoad) {
       this.onUploadProduct.emit(this.dataUpLoad);
     }
-    
+  }
+
+  @ViewChild('resizeBox') resizeBox: ElementRef;
+  @ViewChild('dragHandleCorner') dragHandleCorner: ElementRef;
+  @ViewChild('dragHandleRight') dragHandleRight: ElementRef;
+  @ViewChild('dragHandleBottom') dragHandleBottom: ElementRef;
+
+  get resizeBoxElement(): HTMLElement {
+    return this.resizeBox.nativeElement;
+  }
+
+  get dragHandleCornerElement(): HTMLElement {
+    return this.dragHandleCorner.nativeElement;
+  }
+
+  get dragHandleRightElement(): HTMLElement {
+    return this.dragHandleRight.nativeElement;
+  }
+
+  get dragHandleBottomElement(): HTMLElement {
+    return this.dragHandleBottom.nativeElement;
+  }
+
+  dragMove2(dragHandle: HTMLElement, $event: CdkDragMove<any>) {
+    this.zone.runOutsideAngular(() => {
+      this.resize(dragHandle, this.img.nativeElement);
+    });
+  }
+
+  resize(dragHandle: HTMLElement, target: HTMLElement) {
+    const dragRect = dragHandle.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    const width = dragRect.left - targetRect.left + dragRect.width;
+    const height = dragRect.top - targetRect.top + dragRect.height;
+
+    target.style.width = width + 'px';
+    target.style.height = height + 'px';
+    // dragHandle.style.transform = 'translate(0,0)';
+    this.setAllHandleTransform();
   }
 }
 
