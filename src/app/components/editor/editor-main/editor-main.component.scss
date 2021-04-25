@@ -1,12 +1,13 @@
 .drag_area {
     height: 750px;
     display: flex;
+    flex-direction: column;
     position: relative;
     align-items: center;
+    justify-content: center;
     width: 100%;
     max-width: 100%;
     border: dotted #ccc 2px;
-    justify-content: center;
     z-index: 99999999;
 }
 
@@ -23,8 +24,8 @@
     border-radius: 4px;
     margin-right: 25px;
     img {
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
     }
 }
 .un_drop_zone {
@@ -38,10 +39,10 @@
 
 .phone_img {
     width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
     img {
         width: 100% !important;
     }
@@ -54,19 +55,10 @@
 }
 .draggable {
     display: flex;
-    justify-content: center;
-}
-.dragHandle {
-    position: absolute;
-    background-color: red;
-    bottom: 0;
+    justify-content: space-around;
+    flex-direction: row;
 }
 
-.dragHandle.corner {
-    width: 15px;
-    height: 15px;
-    cursor: nwse-resize;
-}
 .example-handle {
     position: absolute;
 
@@ -82,7 +74,8 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: 90;
+    z-index: 1;
+    background-color: white;
     /* text-align: center; */
     top: 0;
 }
@@ -93,4 +86,87 @@
     position: relative;
     float: right;
     height: 100%;
+}
+
+.drag_resize {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    right: 0;
+}
+.container {
+    position: absolute;
+    z-index: 100;
+    background-color: transparent;
+}
+
+.full {
+    width: 100%;
+    background: yellow;
+}
+
+.dragHandle {
+    position: absolute;
+    background-color: transparent;
+}
+
+.dragHandle.corner {
+    width: 15px;
+    height: 15px;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+    background-color: red;
+}
+
+.dragHandle.right {
+    width: 2px;
+    height: 100%;
+    cursor: ew-resize;
+    right: 0;
+    display: none;
+}
+
+.dragHandle.bottom {
+    display: none;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    cursor: ns-resize;
+}
+.overlay_left {
+    width: 33.3%;
+
+    top: 0;
+
+    height: auto;
+    background-color: white;
+}
+.overlay_right {
+    width: 33.3%;
+
+    height: auto;
+    top: 0;
+
+    background-color: white;
+}
+
+.overlay_top {
+    width: 100%;
+    height: 10%;
+    z-index: 9999;
+    top: 0;
+    position: absolute;
+    background-color: white;
+}
+
+.overlay_bottom {
+    width: 100%;
+    z-index: 9999;
+    height: 10%;
+    bottom: 0;
+    position: absolute;
+    background-color: white;
 }

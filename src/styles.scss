@@ -15,7 +15,15 @@ $web-op-dep-accent: mat-palette($mat-pink, A200, A100, A400);
 $web-op-dep-warn: mat-palette($mat-red);
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$web-op-dep-theme: mat-light-theme( ( color: ( primary: $web-op-dep-primary, accent: $web-op-dep-accent, warn: $web-op-dep-warn, ), ));
+$web-op-dep-theme: mat-light-theme(
+    (
+        color: (
+            primary: $web-op-dep-primary,
+            accent: $web-op-dep-accent,
+            warn: $web-op-dep-warn,
+        ),
+    )
+);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -25,7 +33,7 @@ $web-op-dep-theme: mat-light-theme( ( color: ( primary: $web-op-dep-primary, acc
 
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "./themes/global-class.scss";
-@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 body {
     font-family: "Mulish", sans-serif !important;
     margin: 0px;
