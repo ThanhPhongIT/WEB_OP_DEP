@@ -49,7 +49,7 @@ export class ConfirmComponent implements OnInit {
   conFirm() {
     const formData = new FormData();
     formData.append('photo', this.userImg, 'output.'+this.typeImgUser);
-    formData.append('print', this.imgUpload, 'print.png');
+    formData.append('print', this.imgSrc, 'print.png');
     formData.append('preview', this.imgUpload, 'output.png');
     this.uploadProductService
       .create(
