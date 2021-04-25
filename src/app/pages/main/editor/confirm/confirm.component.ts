@@ -1,5 +1,4 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -10,10 +9,13 @@ import { UploadProductService } from 'src/app/services/uploadProduct.service';
 @Component({
   selector: 'app-confirm',
   template: `
-    <div class="show-img">
-		<img [src]="imgSrc" alt=""/>
-	</div>
-    <button class=" btn btn-fill-out btn-block m-auto w-50 mt-5" (click)="conFirm()">
+    <div class="show-img" >
+      <img [src]="imgSrc" alt="" />
+    </div>
+    <button
+      class=" btn btn-fill-out btn-block m-auto w-50 mt-5"
+      (click)="conFirm()"
+    >
       Xác nhận
     </button>
   `,
@@ -43,29 +45,28 @@ export class ConfirmComponent implements OnInit {
     this.imgSrc = this.dataPass.img.preview;
     this.imgUpload = this.dataPass.img.upload;
     this.userImg = this.dataPass.imgUser;
-    this.typeImgUser = this.userImg.type.replace("image/", '');
+    this.typeImgUser = this.userImg.type.replace('image/', '');
   }
 
   conFirm() {
     const formData = new FormData();
-    formData.append('photo', this.userImg, 'output.'+this.typeImgUser);
-    formData.append('print', this.imgSrc, 'print.png');
-    formData.append('preview', this.imgUpload, 'output.png');
+    const myFile = new File([this.imgUpload], 'print.png', {
+      type: this.imgUpload.type,
+    });
+    formData.append('photo', this.userImg);
+    formData.append('print', myFile);
+    formData.append('preview', myFile);
     this.uploadProductService
-      .create(
-        formData,
-        {
-          user_id: this.user_id,
-          product_id: this.dataProduct.id,
-          price: this.dataProduct.price,
-        },
-        new HttpHeaders({'Content-Type': 'multipart/form-data'})
-      )
+      .create(formData, {
+        user_id: this.user_id,
+        product_id: this.dataProduct.id,
+        price: this.dataProduct.price,
+      })
       .subscribe((res: any) => {
         console.log(res);
+        this.dialogConfirmRef.closeAll();
+        this.router.navigate(['cart']);
       });
-    this.dialogConfirmRef.closeAll();
-    this.router.navigate(['cart']);
   }
 
   getInfor() {
