@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
+import { DeleteProductService } from 'src/app/services/deleteProduct.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { LocalStorageService } from 'src/app/services/localstorage.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private loginService: LoginService,
     private localStorageService: LocalStorageService,
-    private loadService: LoaderService
+    private loadService: LoaderService,
+    private deleteProductServce: DeleteProductService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +44,14 @@ export class CartComponent implements OnInit {
 
       
     });
+  }
+  deleteProd(id){
+    this.loadService.show();
+    console.log(id);
+    this.deleteProductServce.create({user_id: this.infor.id,order_upload_temp_id: id}).subscribe((res)=>{
+      this.getCartInfor(this.infor.id);
+      console.log(res);
+    })
   }
   getCartInfor(userId) {
     this.cartService.create({ user_id: userId }).subscribe((res: any) => {
