@@ -1,4 +1,4 @@
-import { CdkDragMove, DragDropModule, DragRef } from '@angular/cdk/drag-drop';
+import { CdkDragMove, DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   AfterViewInit,
@@ -13,14 +13,10 @@ import {
   Output,
   Renderer2,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import * as htmlToImage from 'html-to-image';
-import { fromEvent, Observable, Subject } from 'rxjs';
-import { debounceTime, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
-import { EditorWrapperComponent } from 'src/app/pages/main/editor/editor-wrapper/editor-wrapper.component';
+import { Observable, Subject } from 'rxjs';
 declare let html2canvas: any;
 @Component({
   selector: 'app-editor-main',
@@ -108,10 +104,6 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
   }
 
   drop(ev) {
-    console.log(ev);
-
-    // console.log(ev);
-    // this.isDropped.next(true);
   }
   dragMove(e) {
     console.log(e);
@@ -127,7 +119,6 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     // this.isDropped.next(true);
   }
   resizeImg(e) {
-    console.log(e);
     if (e.delta.x < 0 || e.delta.y < 0) {
       this.boxHeight -= 2;
       return (this.boxWidth -= 2);
@@ -142,7 +133,6 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
       htmlToImage
         .toBlob(this.phoneArea.nativeElement)
         .then((dataUrl) => {
-          console.log(dataUrl);
           const reader = new FileReader();
           reader.readAsDataURL(dataUrl);
           reader.onload = () => {

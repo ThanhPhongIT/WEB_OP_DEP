@@ -47,10 +47,9 @@ export class CartComponent implements OnInit {
   }
   deleteProd(id){
     this.loadService.show();
-    console.log(id);
     this.deleteProductServce.create({user_id: this.infor.id,order_upload_temp_id: id}).subscribe((res)=>{
       this.getCartInfor(this.infor.id);
-      console.log(res);
+      // console.log(res);
     })
   }
   getCartInfor(userId) {

@@ -56,17 +56,14 @@ export class LoginComponent implements OnInit {
     this.form.get('phoneNumber').valueChanges.subscribe((val) => {
       const regexPhone = new RegExp(/((09|03|07|08|05)+([0-9]{8})\b)/g);
       if (regexPhone.test(val)) {
-        console.log('a');
         this.checkPhone = false;
       } else {
-        console.log('sai');
         this.checkPhone = true;
       }
     });
   }
 
   sendLoginCode() {
-    console.log(this.form.value.phoneNumber);
 
     let phone = '+84' + this.form.value.phoneNumber.replace('0', '');
 
@@ -76,7 +73,6 @@ export class LoginComponent implements OnInit {
       .auth()
       .signInWithPhoneNumber(phone, appVerifier)
       .then((result) => {
-        console.log(result);
         this.windowRef.confirmationResult = result;
         this.isSend = false;
         setTimeout(() => {

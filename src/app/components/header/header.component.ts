@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
       panelClass: 'custom-modalbox'
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
     });
   }
 

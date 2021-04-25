@@ -63,7 +63,6 @@ export class ConfirmComponent implements OnInit {
         price: this.dataProduct.price,
       })
       .subscribe((res: any) => {
-        console.log(res);
         this.dialogConfirmRef.closeAll();
         this.router.navigate(['cart']);
       });

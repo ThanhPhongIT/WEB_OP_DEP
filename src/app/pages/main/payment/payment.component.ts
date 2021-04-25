@@ -79,7 +79,6 @@ export class PaymentComponent implements OnInit {
       .subscribe((res: any) => {
         this.infor = res.profile;
         this.cartInfor = res.data;
-        console.log(this.cartInfor);
         this.profileForm = this.fb.group({
           fullName: this.infor.full_name,
           address: this.infor.address,
@@ -110,7 +109,6 @@ export class PaymentComponent implements OnInit {
       })
       .subscribe((res: any) => {
         this.user_id = res.data.id;
-        console.log(this.getCityNameById(this.user_id ));
         
         this.discountProfile(this.user_id, '');
         this.loadService.hide();
@@ -130,8 +128,7 @@ export class PaymentComponent implements OnInit {
       "code_number": this.discountCode
     
     }).subscribe(res=>{
-      this.router.navigate(['home'])
-      console.log(res);
+      this.router.navigate(['home']);
       
     })
   }
