@@ -4,7 +4,7 @@
             <img class="img_phone" [style.height.px]="600" [crossOrigin]="'anonymous'" [src]="data?.data?.editor[1]?.image" alt="Ảnh phone">
         </ng-template>
     </app-editor-main>
-    <app-editor-toolbar (onChooseImage)="imgBase64 = $event"></app-editor-toolbar>
+    <app-editor-toolbar (passUserImg)="getUserImg($event)" (onChooseImage)="imgBase64 = $event"></app-editor-toolbar>
     <div class="close" (click)="dialogRef.close()">
         <img src="assets/img/times-solid.svg" alt="">
     </div>

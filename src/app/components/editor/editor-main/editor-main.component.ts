@@ -147,7 +147,7 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
           reader.readAsDataURL(dataUrl);
           reader.onload = () => {
             this.dataBs = reader.result as string;
-            this.dataUpLoad = this.dataBs;
+            this.onUploadProduct.emit({preview:  this.dataBs, upload: dataUrl });
           };
         })
         .catch(function (error) {
@@ -156,11 +156,6 @@ export class EditorMainComponent implements OnInit, AfterViewInit {
     }, 500);
   }
 
-  uploadProduct() {
-    if (this.dataUpLoad) {
-      this.onUploadProduct.emit(this.dataUpLoad);
-    }
-  }
 
   @ViewChild('resizeBox') resizeBox: ElementRef;
   @ViewChild('dragHandleCorner') dragHandleCorner: ElementRef;

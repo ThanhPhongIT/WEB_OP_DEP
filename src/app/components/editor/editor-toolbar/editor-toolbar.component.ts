@@ -15,6 +15,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 })
 export class EditorToolbarComponent implements OnInit {
   @Output() onChooseImage = new EventEmitter();
+  @Output() passUserImg = new EventEmitter();
   imgSrc: string;
   constructor() {}
 
@@ -23,6 +24,7 @@ export class EditorToolbarComponent implements OnInit {
   imgFileSelected(event: any) {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
+    this.passUserImg.emit(event.target.files[0]);
     reader.onload = () => {
       this.imgSrc = reader.result as string;
       this.onChooseImage.emit(this.imgSrc);

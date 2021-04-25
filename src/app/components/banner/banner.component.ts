@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
-import { SwiperModule } from 'swiper/angular';
 
 @Component({
   selector: 'app-banner',
@@ -15,17 +14,11 @@ export class BannerComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSwiper(swiper) {
-    console.log(swiper);
-  }
-  onSlideChange() {
-    console.log('slide change');
-  }
 }
 
 @NgModule({
   declarations: [BannerComponent],
-  imports: [CommonModule, SwiperModule],
+  imports: [CommonModule],
   exports: [BannerComponent],
 })
 export class BannerModule {}

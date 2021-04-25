@@ -1,14 +1,11 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { Component, Inject, NgModule, OnChanges, OnInit } from '@angular/core';
+import { Component, Inject, NgModule, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { DraggableImageModule } from 'src/app/components/editor/draggable-image/draggable-image.component';
 import { EditorMainModule } from 'src/app/components/editor/editor-main/editor-main.component';
 import { EditorToolbarModule } from 'src/app/components/editor/editor-toolbar/editor-toolbar.component';
-import { PhoneType } from 'src/app/models/phone-model.model';
-import { ProductCategoryService } from 'src/app/services/product-category.service';
-import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
 import { ConfirmComponent } from '../confirm/confirm.component';
 @Component({
   selector: 'app-editor-wrapper',
@@ -18,6 +15,7 @@ import { ConfirmComponent } from '../confirm/confirm.component';
 export class EditorWrapperComponent implements OnInit {
   private imageLink: string;
   imgBase64;
+  userImg;
   constructor(
     public dialogRef: MatDialogRef<EditorWrapperComponent>,
     public dialog: MatDialog,
@@ -36,7 +34,7 @@ export class EditorWrapperComponent implements OnInit {
       maxHeight: '80vh',
       height: '100%',
       width: '100%',
-      data:  {data: this.data, img: image},
+      data:  {data: this.data, img: image, imgUser: this.userImg},
     });
   }
 
@@ -44,6 +42,10 @@ export class EditorWrapperComponent implements OnInit {
     console.log(ev);
     // File Preview
     // console.log(this.imageLink, reader.readAsDataURL(ev));
+  }
+
+  getUserImg(event){
+    this.userImg = event;
   }
 
   upLoadData(ev) {
