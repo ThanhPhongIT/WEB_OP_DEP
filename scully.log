@@ -1,1 +1,7 @@
 No configuration for route "/home/:id" found. Skipping
+
+----------------------------------
+Using stored unhandled routes!.
+   To discover new routes in the angular app use "npm run scully -- --scanRoutes"
+----------------------------------No configuration for route "/home/:id" found. Skipping
+

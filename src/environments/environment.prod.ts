@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  API_URL: 'http://opdep.qalatt.com',
+  API_URL: 'https://opdep.opdienthoaidep.vn',
   firebase: {
     apiKey: "AIzaSyDd3bzEQcEnfgkrKg4uQLFgW0okqCujEQU",
     authDomain: "opdep-5eb9f.firebaseapp.com",
